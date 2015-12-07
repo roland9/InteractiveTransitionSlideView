@@ -21,9 +21,44 @@
 
 @implementation InteractiveTransition
 
-// UIViewControllerInteractiveTransitioning
+# pragma mark - Public
+
+- (void)didCompleteTransition:(BOOL)didComplete {
+    NSLog(@"%s", __FUNCTION__);
+
+    if (didComplete) {
+        [self.viewControllerFrom.view removeFromSuperview];
+    } else {
+        [self.viewControllerTo.view removeFromSuperview];
+    }
+    
+    NSCAssert(self.context, @"expected context");
+    [self.context completeTransition:didComplete];
+    self.context = nil;
+}
+
+
+# pragma mark - UIViewControllerAnimatedTransitioning
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    NSLog(@"%s", __FUNCTION__);
+}
+
+- (void)animationEnded:(BOOL)transitionCompleted {
+    NSLog(@"%s", __FUNCTION__);
+}
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
+{
+    NSLog(@"%s", __FUNCTION__);
+    return 1.f;
+}
+
+
+#pragma mark - UIViewControllerInteractiveTransitioning
+
+- (void)startInteractiveTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
+    
     UIView *containerView = [transitionContext containerView];
     self.context = transitionContext;
     
@@ -38,9 +73,9 @@
         CGFloat height = CGRectGetHeight(self.viewControllerFrom.view.frame);
         
         self.viewControllerTo.view.frame = CGRectMake(width,
-                                                 0,
-                                                 width,
-                                                 height - 100);
+                                                      0,
+                                                      width,
+                                                      height - 100);
         [containerView addSubview:self.viewControllerTo.view];
         
     } else {
@@ -54,49 +89,37 @@
     NSLog(@"%s: percent=%f", __FUNCTION__, percentComplete);
     NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
 
-    CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
-    self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width * percentComplete, 0.f);
-}
-
-- (void)animationEnded:(BOOL)transitionCompleted {
-    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
-    CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
-
-    [UIView animateWithDuration:0.2 delay:0.f usingSpringWithDamping:1.f initialSpringVelocity:1.f options:0 animations:^{
-        self.viewControllerTo.view.transform = transitionCompleted ? CGAffineTransformMakeTranslation(-width, 0.f) :  CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        [self.viewControllerFrom.view removeFromSuperview];
-        [self.viewControllerTo.view removeFromSuperview];
-    }];
-}
-
-- (void)finishInteractiveTransition {
-    NSLog(@"%s", __FUNCTION__);
-    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
-    NSCAssert(self.context, @"expected context");
+//    CGFloat scale = 1.f - 0.2f * percentComplete;
+//    
+//    self.viewControllerFrom.view.transform = CGAffineTransformMakeScale(scale, scale);
     
     CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
-    self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width, 0.f);
-    [self.context completeTransition:YES];
+    self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width * percentComplete, 0.f);
 }
 
 - (void)cancelInteractiveTransition {
     NSLog(@"%s", __FUNCTION__);
     NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
-    NSCAssert(self.context, @"expected context");
     
+//    self.viewControllerFrom.view.transform = CGAffineTransformIdentity;
+
     self.viewControllerTo.view.transform = CGAffineTransformIdentity;
-//    [self.viewControllerTo.view removeFromSuperview];
-    [self.context completeTransition:NO];
 }
 
-- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
-{
+
+# pragma mark - UIViewControllerContextTransitioning
+
+- (void)finishInteractiveTransition {
     NSLog(@"%s", __FUNCTION__);
-    return 1.f;
+    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
+    
+    CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
+    
+    self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width, 0.f);
 }
 
-// UIViewControllerTransitioningDelegate
+
+# pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {

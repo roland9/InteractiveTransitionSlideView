@@ -10,4 +10,6 @@
 
 @interface InteractiveTransition : UIPercentDrivenInteractiveTransition <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>
 
+- (void)didCompleteTransition:(BOOL)didComplete;
+
 @end

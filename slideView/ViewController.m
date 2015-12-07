@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, TransitioningState) {
     } else if (state == UIGestureRecognizerStateChanged) {
         [self handlePanGestureChanged:panGestureRecognizer];
 
-    } else if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateCancelled) {
+    } else if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateCancelled || state == UIGestureRecognizerStateFailed) {
         [self handlePanGestureEndedOrCancelled:panGestureRecognizer];
     }
 }
@@ -127,20 +127,28 @@ typedef NS_ENUM(NSInteger, TransitioningState) {
 }
 
 - (void)handlePanFinishWithTargetState:(TransitioningState)state {
+    NSCAssert(state == TransitioningStateLeft || state == TransitioningStateRight, @"expected right or left as target");
+    
     [UIView animateWithDuration:0.2 delay:0.f usingSpringWithDamping:.6f initialSpringVelocity:.9f options:0 animations:^{
+        
         if (state == TransitioningStateLeft) {
             self.handleView.transform = [self transformTranslationHandleViewLeft];
+            [self.transition finishInteractiveTransition];
+
         } else {
             self.handleView.transform = [self transformTranslationHandleViewRight];
+            [self.transition cancelInteractiveTransition];
         }
+        
     } completion:^(BOOL finished) {
         
         if (state == TransitioningStateLeft) {
             self.transitioningState = TransitioningStateLeft;
-            [self.transition finishInteractiveTransition];
+            [self.transition didCompleteTransition:YES];
+            
         } else {
             self.transitioningState = TransitioningStateRight;
-            [self.transition cancelInteractiveTransition];
+            [self.transition didCompleteTransition:NO];
         }
     }];
 
@@ -167,10 +175,6 @@ typedef NS_ENUM(NSInteger, TransitioningState) {
 }
 
 - (void)presentSlideViewController {
-    // check that it's not already shown
-    if (self.transition) {
-        return;
-    }
     
     self.transition = [[InteractiveTransition alloc] init];
     
