@@ -10,11 +10,18 @@
 #import "SlideViewController.h"
 #import "InteractiveTransition.h"
 
+typedef NS_ENUM(NSInteger, TransitioningState) {
+    TransitioningStateRight,
+    TransitioningStateInteractive,
+    TransitioningStateLeft,
+};
+
+
 @interface ViewController ()
 
 @property (nonatomic, strong) UIView *handleView;
 @property (nonatomic, strong) InteractiveTransition *transition;
-@property (nonatomic, assign) BOOL isHandleViewLeft;
+@property (nonatomic, assign) TransitioningState transitioningState;
 
 @end
 
@@ -22,60 +29,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.view.backgroundColor = [UIColor greenColor];
     
-    // add handle view
-    self.handleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    self.handleView.backgroundColor = [UIColor blueColor];
-    self.handleView.center = CGPointMake(CGRectGetWidth(self.view.bounds)-40, CGRectGetHeight(self.view.bounds)-40);
-    self.isHandleViewLeft = NO;
-    [self.view addSubview:self.handleView];
-    
-    // add gesture recognizer
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
-    [self.handleView addGestureRecognizer:pan];
+    [self addHandleViewAndGestureRecognizer];
 }
+
+# pragma mark - handle pan gesture recognizer events
 
 - (void)didPan:(UIPanGestureRecognizer *)panGestureRecognizer {
     UIGestureRecognizerState state = panGestureRecognizer.state;
     
     if (state == UIGestureRecognizerStateBegan) {
         [self handlePanGestureStateBegan];
-        return;
-    }
-    
-    if (state == UIGestureRecognizerStateChanged) {
+
+    } else if (state == UIGestureRecognizerStateChanged) {
         [self handlePanGestureChanged:panGestureRecognizer];
-        return;
-    }
-    
-    if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateCancelled) {
+
+    } else if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateCancelled) {
         [self handlePanGestureEndedOrCancelled:panGestureRecognizer];
-        return;
     }
 }
 
 - (void)handlePanGestureStateBegan {
-    //        [self presentSlideViewController];
+    [self presentSlideViewController];
 }
 
 - (void)handlePanGestureChanged:(UIPanGestureRecognizer *)panGestureRecognizer {
     
-    // move the handleView along with the touch events
-    
     CGPoint location = [panGestureRecognizer translationInView:self.view];
-    CGAffineTransform transformCurrentLocation = CGAffineTransformMakeTranslation(location.x, 0);
-    
-    self.handleView.transform = self.isHandleViewLeft ?
-    CGAffineTransformConcat([self transformTranslationHandleViewLeft], transformCurrentLocation) :
-    transformCurrentLocation;
-    
-    NSLog(@"%s: location=%@  leftEdgeHandleView=%f", __FUNCTION__, NSStringFromCGPoint(location), CGRectGetMinX(self.handleView.frame));
-    //        CGFloat width = CGRectGetWidth(self.view.bounds);
-    //        NSCAssert(self.transition, @"expected transition here");
-    //        CGFloat animationRatio = (width - CGRectGetMinX(self.handleView.frame)) / width;
-    //        [self.transition updateInteractiveTransition:animationRatio];
+
+    [self moveHandleViewWithX:location.x];
+
+    [self updateInteractiveTransitionWithX:location.x];
 }
 
 - (void)handlePanGestureEndedOrCancelled:(UIPanGestureRecognizer *)panGestureRecognizer {
@@ -100,9 +85,9 @@
         
         
         if (isDirectionLeft) {
-            [self handlePanFinishToLeft];
+            [self handlePanFinishWithTargetState:TransitioningStateLeft];
         } else {
-            [self handlePanFinishToRight];
+            [self handlePanFinishWithTargetState:TransitioningStateRight];
         }
         
     } else {
@@ -110,35 +95,52 @@
         // right half of view
         
         if (isDirectionLeft) {
-            [self handlePanFinishToLeft];
+            [self handlePanFinishWithTargetState:TransitioningStateLeft];
         } else {
-            [self handlePanFinishToRight];
+            [self handlePanFinishWithTargetState:TransitioningStateRight];
         }
 
     }
 }
 
-- (void)handlePanFinishToLeft {
-    [self handlePanFinishWithDirectionLeft:YES];
+# pragma mark - Private methods
+
+- (void)moveHandleViewWithX:(CGFloat)x {
+    // move the handleView along with the touch events
+    NSLog(@"%s: x=%f", __FUNCTION__, x);
+    
+    CGAffineTransform transformCurrentLocation = CGAffineTransformMakeTranslation(x, 0);
+    
+    self.handleView.transform = self.transitioningState == TransitioningStateLeft ?
+    CGAffineTransformConcat([self transformTranslationHandleViewLeft], transformCurrentLocation) :
+    transformCurrentLocation;
 }
 
-- (void)handlePanFinishToRight {
-    [self handlePanFinishWithDirectionLeft:NO];
+- (void)updateInteractiveTransitionWithX:(CGFloat)x {
+    CGFloat width = CGRectGetWidth(self.view.bounds);
+    NSCAssert(self.transition, @"expected transition here");
+    
+    CGFloat animationRatio = (width - CGRectGetMaxX(self.handleView.frame)) / width;
+
+    NSLog(@"%s: animationRatio=%f", __FUNCTION__, animationRatio);
+    [self.transition updateInteractiveTransition:animationRatio];
 }
 
-- (void)handlePanFinishWithDirectionLeft:(BOOL)isDirectionLeft {
+- (void)handlePanFinishWithTargetState:(TransitioningState)state {
     [UIView animateWithDuration:0.2 delay:0.f usingSpringWithDamping:.6f initialSpringVelocity:.9f options:0 animations:^{
-        if (isDirectionLeft) {
+        if (state == TransitioningStateLeft) {
             self.handleView.transform = [self transformTranslationHandleViewLeft];
         } else {
             self.handleView.transform = [self transformTranslationHandleViewRight];
         }
     } completion:^(BOOL finished) {
-        //                [self.transition cancelInteractiveTransition];
-        if (isDirectionLeft) {
-            self.isHandleViewLeft = YES;
+        
+        if (state == TransitioningStateLeft) {
+            self.transitioningState = TransitioningStateLeft;
+            [self.transition finishInteractiveTransition];
         } else {
-            self.isHandleViewLeft = NO;
+            self.transitioningState = TransitioningStateRight;
+            [self.transition cancelInteractiveTransition];
         }
     }];
 
@@ -150,6 +152,18 @@
 
 - (CGAffineTransform)transformTranslationHandleViewRight {
     return CGAffineTransformMakeTranslation(0, 0);
+}
+
+- (void)addHandleViewAndGestureRecognizer {
+    self.handleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    self.handleView.backgroundColor = [UIColor blueColor];
+    self.handleView.center = CGPointMake(CGRectGetWidth(self.view.bounds)-40, CGRectGetHeight(self.view.bounds)-40);
+    self.transitioningState = TransitioningStateRight;
+    [self.view addSubview:self.handleView];
+    
+    // add gesture recognizer
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
+    [self.handleView addGestureRecognizer:pan];
 }
 
 - (void)presentSlideViewController {

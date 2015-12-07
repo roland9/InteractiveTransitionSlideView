@@ -89,13 +89,10 @@
 		23B135F11B2E10B8007B9C3B /* slideView */ = {
 			isa = PBXGroup;
 			children = (
-				23B135F61B2E10B8007B9C3B /* AppDelegate.h */,
+				23CEAD6A1C16131200E5AA6E /* Headers */,
 				23B135F71B2E10B8007B9C3B /* AppDelegate.m */,
-				23B135F91B2E10B8007B9C3B /* ViewController.h */,
 				23B135FA1B2E10B8007B9C3B /* ViewController.m */,
-				23B136201B2E11C6007B9C3B /* InteractiveTransition.h */,
 				23B136211B2E11C6007B9C3B /* InteractiveTransition.m */,
-				23B1361B1B2E1157007B9C3B /* SlideViewController.h */,
 				23B1361C1B2E1157007B9C3B /* SlideViewController.m */,
 				23B1361D1B2E1157007B9C3B /* SlideViewController.xib */,
 				23B135FC1B2E10B8007B9C3B /* Main.storyboard */,
@@ -130,6 +127,17 @@
 				23B1360D1B2E10B8007B9C3B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		23CEAD6A1C16131200E5AA6E /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				23B135F61B2E10B8007B9C3B /* AppDelegate.h */,
+				23B135F91B2E10B8007B9C3B /* ViewController.h */,
+				23B136201B2E11C6007B9C3B /* InteractiveTransition.h */,
+				23B1361B1B2E1157007B9C3B /* SlideViewController.h */,
+			);
+			name = Headers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,6 +440,7 @@
 				23B136141B2E10B8007B9C3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		23B136151B2E10B8007B9C3B /* Build configuration list for PBXNativeTarget "slideViewTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +449,7 @@
 				23B136171B2E10B8007B9C3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
