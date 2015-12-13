@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SlideTransitionView.h"
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController <SlideTransitionProtocol>
 
 @end
 

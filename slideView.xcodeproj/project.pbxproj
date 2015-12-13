@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23ABB7AA1C1DF85600A79F3F /* SlideTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */; };
 		23B135F51B2E10B8007B9C3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B135F41B2E10B8007B9C3B /* main.m */; };
 		23B135F81B2E10B8007B9C3B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B135F71B2E10B8007B9C3B /* AppDelegate.m */; };
 		23B135FB1B2E10B8007B9C3B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B135FA1B2E10B8007B9C3B /* ViewController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23ABB7A81C1DF85600A79F3F /* SlideTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTransitionView.h; sourceTree = "<group>"; };
+		23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTransitionView.m; sourceTree = "<group>"; };
 		23B135EF1B2E10B8007B9C3B /* slideView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slideView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B135F31B2E10B8007B9C3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23B135F41B2E10B8007B9C3B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 				23CEAD6A1C16131200E5AA6E /* Headers */,
 				23B135F71B2E10B8007B9C3B /* AppDelegate.m */,
 				23B135FA1B2E10B8007B9C3B /* ViewController.m */,
+				23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */,
 				23B136211B2E11C6007B9C3B /* InteractiveTransition.m */,
 				23B1361C1B2E1157007B9C3B /* SlideViewController.m */,
 				23B1361D1B2E1157007B9C3B /* SlideViewController.xib */,
@@ -132,6 +136,7 @@
 		23CEAD6A1C16131200E5AA6E /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				23ABB7A81C1DF85600A79F3F /* SlideTransitionView.h */,
 				23B135F61B2E10B8007B9C3B /* AppDelegate.h */,
 				23B135F91B2E10B8007B9C3B /* ViewController.h */,
 				23B136201B2E11C6007B9C3B /* InteractiveTransition.h */,
@@ -242,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23B1361E1B2E1157007B9C3B /* SlideViewController.m in Sources */,
+				23ABB7AA1C1DF85600A79F3F /* SlideTransitionView.m in Sources */,
 				23B135FB1B2E10B8007B9C3B /* ViewController.m in Sources */,
 				23B135F81B2E10B8007B9C3B /* AppDelegate.m in Sources */,
 				23B135F51B2E10B8007B9C3B /* main.m in Sources */,

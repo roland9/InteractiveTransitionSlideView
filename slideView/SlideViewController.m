@@ -21,14 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 
 //    [self addHandleViewAndGestureRecognizer];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)didPan:(UIPanGestureRecognizer *)panGestureRecognizer {
