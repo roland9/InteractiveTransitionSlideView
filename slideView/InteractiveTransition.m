@@ -86,11 +86,11 @@
 - (void)updateInteractiveTransition:(CGFloat)percentComplete
 {
     NSLog(@"%s: percent=%f", __FUNCTION__, percentComplete);
-//    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
+    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
 
-//    CGFloat scale = 1.f - 0.1f * percentComplete;
-//    self.viewControllerFrom.view.transform = CGAffineTransformMakeScale(scale, scale);
-    
+    CGFloat scale = 1.f - 0.1f * percentComplete;
+    self.viewControllerFrom.view.transform = CGAffineTransformMakeScale(scale, scale);
+
     CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
     self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width * percentComplete, 0.f);
 }
