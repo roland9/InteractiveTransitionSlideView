@@ -180,10 +180,12 @@ typedef NS_ENUM(NSInteger, TransitioningState) {
     self.transition = [[InteractiveTransition alloc] init];
     
     SlideViewController *slideViewController = [[SlideViewController alloc] init];
-    slideViewController.modalPresentationStyle = UIModalPresentationCustom;
-    slideViewController.transitioningDelegate = self.transition;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:slideViewController];
+
+    navigationController.modalPresentationStyle = UIModalPresentationCustom;
+    navigationController.transitioningDelegate = self.transition;
     
-    [self presentViewController:slideViewController animated:YES completion:nil];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

@@ -37,7 +37,7 @@
 
 - (void)addHandleViewAndGestureRecognizer {
     self.handleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    self.handleView.backgroundColor = [UIColor blueColor];
+    self.handleView.backgroundColor = [UIColor yellowColor];
     self.handleView.center = CGPointMake(0, CGRectGetHeight(self.view.bounds)-40);
     [self.view addSubview:self.handleView];
     

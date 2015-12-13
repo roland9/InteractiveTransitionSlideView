@@ -63,10 +63,10 @@
     
     if (self.isPresenting) {
         self.viewControllerFrom = (ViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-        NSCAssert([self.viewControllerFrom isKindOfClass:[ViewController class]], @"invalid");
+        NSCAssert([self.viewControllerFrom isKindOfClass:[UINavigationController class]], @"invalid");
         
         self.viewControllerTo = (SlideViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-        NSCAssert([self.viewControllerTo isKindOfClass:[SlideViewController class]], @"invalid");
+        NSCAssert([self.viewControllerTo isKindOfClass:[UINavigationController class]], @"invalid");
         
         CGFloat width = CGRectGetWidth(self.viewControllerFrom.view.frame);
         CGFloat height = CGRectGetHeight(self.viewControllerFrom.view.frame);
