@@ -96,7 +96,7 @@
 
 - (void)cancelInteractiveTransition {
     NSLog(@"%s", __FUNCTION__);
-    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
+//    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
     
     self.viewControllerFrom.view.transform = CGAffineTransformIdentity;
 

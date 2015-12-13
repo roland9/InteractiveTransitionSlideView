@@ -32,6 +32,7 @@
     [self.view addSubview:self.slideTransitionView];
 }
 
+
 # pragma mark - SlideTransitionProtocol
 
 - (void)presentSlideViewController {

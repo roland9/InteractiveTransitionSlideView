@@ -9,16 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "InteractiveTransition.h"
 
-typedef NS_ENUM(NSInteger, TransitioningState) {
-    TransitioningStateRight,
-    TransitioningStateInteractive,
-    TransitioningStateLeft,
-};
-
-
 @protocol SlideTransitionProtocol <NSObject>
 
+@optional
 - (void)presentSlideViewController;
+- (void)dismissSlideViewController;
 
 @end
 

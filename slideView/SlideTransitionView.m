@@ -8,6 +8,13 @@
 
 #import "SlideTransitionView.h"
 
+typedef NS_ENUM(NSInteger, TransitioningState) {
+    TransitioningStateRight,
+    TransitioningStateInteractive,
+    TransitioningStateLeft,
+};
+
+
 @interface SlideTransitionView()
 
 @property (nonatomic, strong) InteractiveTransition *transition;
@@ -52,7 +59,13 @@
 }
 
 - (void)handlePanGestureStateBegan {
-    [self.delegate presentSlideViewController];
+    if ([self.delegate respondsToSelector:@selector(presentSlideViewController)]) {
+        [self.delegate presentSlideViewController];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(dismissSlideViewController)]) {
+        [self.delegate dismissSlideViewController];
+    }
 }
 
 - (void)handlePanGestureChanged:(UIPanGestureRecognizer *)panGestureRecognizer {

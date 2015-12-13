@@ -11,10 +11,12 @@
 @interface SlideViewController ()
 
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) UIView *handleView;
+@property (nonatomic, strong) SlideTransitionView *slideTransitionView;
 
 @end
 
+#define kSlideTransitionViewWidth   80
+#define kSlideTransitionViewHeight  80
 
 @implementation SlideViewController
 
@@ -23,22 +25,25 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
 
-//    [self addHandleViewAndGestureRecognizer];
+    [self addSlideTransitionView];
 }
 
-- (void)didPan:(UIPanGestureRecognizer *)panGestureRecognizer {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-- (void)addHandleViewAndGestureRecognizer {
-    self.handleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-    self.handleView.backgroundColor = [UIColor yellowColor];
-    self.handleView.center = CGPointMake(0, CGRectGetHeight(self.view.bounds)-40);
-    [self.view addSubview:self.handleView];
+- (void)addSlideTransitionView {
+    self.slideTransitionView = [[SlideTransitionView alloc] initWithFrame:CGRectMake(0, 0, kSlideTransitionViewWidth, kSlideTransitionViewHeight) delegate:self];
     
-    // add gesture recognizer
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
-    [self.handleView addGestureRecognizer:pan];
+    self.slideTransitionView.center = CGPointMake(0, CGRectGetHeight(self.view.bounds)-kSlideTransitionViewHeight);
+    [self.view addSubview:self.slideTransitionView];
+
+    self.slideTransitionView.backgroundColor = [UIColor yellowColor];
+}
+
+# pragma mark - SlideTransitionProtocol
+
+- (void)dismissSlideViewController {
+//    self.modalTransitionStyle = UIModalPresentationCustom;
+    self.transitioningDelegate = self.slideTransitionView.transition;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
