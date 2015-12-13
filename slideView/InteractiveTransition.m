@@ -66,7 +66,7 @@
         NSCAssert([self.viewControllerFrom isKindOfClass:[UINavigationController class]], @"invalid");
         
         self.viewControllerTo = (SlideViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-        NSCAssert([self.viewControllerTo isKindOfClass:[UINavigationController class]], @"invalid");
+        NSCAssert([self.viewControllerTo isKindOfClass:[SlideViewController class]], @"invalid");
         
         CGFloat width = CGRectGetWidth(self.viewControllerFrom.view.frame);
         CGFloat height = CGRectGetHeight(self.viewControllerFrom.view.frame);
@@ -86,7 +86,7 @@
 - (void)updateInteractiveTransition:(CGFloat)percentComplete
 {
     NSLog(@"%s: percent=%f", __FUNCTION__, percentComplete);
-    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
+//    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
 
     CGFloat scale = 1.f - 0.1f * percentComplete;
     self.viewControllerFrom.view.transform = CGAffineTransformMakeScale(scale, scale);

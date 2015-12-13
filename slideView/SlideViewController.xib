@@ -15,8 +15,22 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7C1-nJ-jzI" userLabel="Fake StatusBar">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                    <color key="backgroundColor" red="0.72156862749999995" green="0.91372549020000005" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="MYp-g6-az5"/>
+                    </constraints>
+                </view>
+                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGg-Az-Wc3">
+                    <rect key="frame" x="0.0" y="20" width="560" height="44"/>
+                    <color key="barTintColor" red="0.72156862749999995" green="0.91372549020000005" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <items>
+                        <navigationItem title="Title" id="bkP-bM-Egp"/>
+                    </items>
+                </navigationBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LMQ-3y-2Od">
-                    <rect key="frame" x="0.0" y="0.0" width="560" height="520"/>
+                    <rect key="frame" x="0.0" y="64" width="560" height="456"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeH-UC-Fmn" userLabel="Footer View">
@@ -29,13 +43,20 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="7C1-nJ-jzI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6fn-IV-ZkO"/>
                 <constraint firstItem="AeH-UC-Fmn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-40" id="ACw-Ba-yUX"/>
                 <constraint firstItem="AeH-UC-Fmn" firstAttribute="top" secondItem="LMQ-3y-2Od" secondAttribute="bottom" id="AXZ-00-ysp"/>
-                <constraint firstItem="LMQ-3y-2Od" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ByO-ym-wpf"/>
                 <constraint firstItem="LMQ-3y-2Od" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dmj-6g-9xt"/>
+                <constraint firstItem="7C1-nJ-jzI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ETA-2K-m77"/>
+                <constraint firstItem="hGg-Az-Wc3" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" constant="-40" id="QiD-rO-NAX"/>
+                <constraint firstItem="hGg-Az-Wc3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SJd-0P-djL"/>
+                <constraint firstItem="LMQ-3y-2Od" firstAttribute="top" secondItem="hGg-Az-Wc3" secondAttribute="bottom" id="YTm-1y-Qt8"/>
                 <constraint firstAttribute="bottom" secondItem="AeH-UC-Fmn" secondAttribute="bottom" id="ZYP-Gr-Jhp"/>
+                <constraint firstItem="7C1-nJ-jzI" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="c8b-PW-5j0"/>
                 <constraint firstItem="AeH-UC-Fmn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="fHS-lb-FDW"/>
                 <constraint firstItem="LMQ-3y-2Od" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" constant="-40" id="iFs-SN-ARF"/>
+                <constraint firstItem="hGg-Az-Wc3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="oUM-Rw-IvN"/>
+                <constraint firstItem="hGg-Az-Wc3" firstAttribute="leading" secondItem="7C1-nJ-jzI" secondAttribute="trailing" constant="-600" id="uCO-KY-qBf"/>
             </constraints>
         </view>
     </objects>
