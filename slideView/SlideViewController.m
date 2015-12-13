@@ -10,13 +10,20 @@
 
 @interface SlideViewController ()
 
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIView *handleView;
+
 @end
+
 
 @implementation SlideViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    self.view.backgroundColor = [UIColor clearColor];
+
+//    [self addHandleViewAndGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +31,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)didPan:(UIPanGestureRecognizer *)panGestureRecognizer {
+    NSLog(@"%s", __FUNCTION__);
 }
-*/
+
+- (void)addHandleViewAndGestureRecognizer {
+    self.handleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    self.handleView.backgroundColor = [UIColor blueColor];
+    self.handleView.center = CGPointMake(0, CGRectGetHeight(self.view.bounds)-40);
+    [self.view addSubview:self.handleView];
+    
+    // add gesture recognizer
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
+    [self.handleView addGestureRecognizer:pan];
+}
 
 @end

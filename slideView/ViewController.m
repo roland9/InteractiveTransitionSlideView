@@ -34,6 +34,7 @@ typedef NS_ENUM(NSInteger, TransitioningState) {
     [self addHandleViewAndGestureRecognizer];
 }
 
+
 # pragma mark - handle pan gesture recognizer events
 
 - (void)didPan:(UIPanGestureRecognizer *)panGestureRecognizer {

@@ -24,10 +24,9 @@
 # pragma mark - Public
 
 - (void)didCompleteTransition:(BOOL)didComplete {
-    NSLog(@"%s", __FUNCTION__);
 
     if (didComplete) {
-        [self.viewControllerFrom.view removeFromSuperview];
+//        [self.viewControllerFrom.view removeFromSuperview];
     } else {
         [self.viewControllerTo.view removeFromSuperview];
     }
@@ -75,7 +74,7 @@
         self.viewControllerTo.view.frame = CGRectMake(width,
                                                       0,
                                                       width,
-                                                      height - 100);
+                                                      height);
         [containerView addSubview:self.viewControllerTo.view];
         
     } else {
@@ -87,10 +86,9 @@
 - (void)updateInteractiveTransition:(CGFloat)percentComplete
 {
     NSLog(@"%s: percent=%f", __FUNCTION__, percentComplete);
-    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
+//    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
 
-//    CGFloat scale = 1.f - 0.2f * percentComplete;
-//    
+//    CGFloat scale = 1.f - 0.1f * percentComplete;
 //    self.viewControllerFrom.view.transform = CGAffineTransformMakeScale(scale, scale);
     
     CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
@@ -101,7 +99,7 @@
     NSLog(@"%s", __FUNCTION__);
     NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
     
-//    self.viewControllerFrom.view.transform = CGAffineTransformIdentity;
+    self.viewControllerFrom.view.transform = CGAffineTransformIdentity;
 
     self.viewControllerTo.view.transform = CGAffineTransformIdentity;
 }
@@ -115,7 +113,7 @@
     
     CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
     
-    self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width, 0.f);
+    self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width + 40.f, 0.f);
 }
 
 
