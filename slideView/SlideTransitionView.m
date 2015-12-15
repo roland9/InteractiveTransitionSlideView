@@ -8,30 +8,27 @@
 
 #import "SlideTransitionView.h"
 
-typedef NS_ENUM(NSInteger, TransitioningState) {
-    TransitioningStateRight,
-    TransitioningStateInteractive,
-    TransitioningStateLeft,
-};
-
-
 @interface SlideTransitionView()
 
-@property (nonatomic, strong) InteractiveTransition *transition;
 @property (nonatomic, assign) TransitioningState transitioningState;
 @property (nonatomic, weak)   id<SlideTransitionProtocol> delegate;
+@property (nonatomic, weak)   InteractiveTransition *transition;
+
 @end
 
 
 @implementation SlideTransitionView
 
-- (id)initWithFrame:(CGRect)frame delegate:(id<SlideTransitionProtocol>)delegate {
+- (id)initWithFrame:(CGRect)frame
+           delegate:(id<SlideTransitionProtocol>)delegate
+         transition:(InteractiveTransition *)transition
+       initialState:(TransitioningState)initialState {
     self = [super initWithFrame:frame];
     
     if (self) {
         _delegate = delegate;
-        _transitioningState = TransitioningStateRight;
-        _transition = [[InteractiveTransition alloc] init];
+        _transitioningState = initialState;
+        _transition = transition;
         
         self.backgroundColor = [UIColor blueColor];
 

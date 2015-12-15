@@ -18,10 +18,19 @@
 @end
 
 
+typedef NS_ENUM(NSInteger, TransitioningState) {
+    TransitioningStateRight,
+    TransitioningStateInteractive,
+    TransitioningStateLeft,
+};
+
+
+
 @interface SlideTransitionView : UIView
 
-- (id)initWithFrame:(CGRect)frame delegate:(id<SlideTransitionProtocol>)delegate;
-
-@property (nonatomic, readonly) InteractiveTransition *transition;
+- (id)initWithFrame:(CGRect)frame
+           delegate:(id<SlideTransitionProtocol>)delegate
+         transition:(InteractiveTransition *)transition
+       initialState:(TransitioningState)initialState;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  InteractiveTransition.h
+//  InteractiveDismissTransition.h
 //  slideView
 //
 //  Created by Roland Gröpmair on 14/06/2015.
@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface InteractiveTransition : UIPercentDrivenInteractiveTransition <UIViewControllerAnimatedTransitioning>
+@interface InteractiveDismissTransition : UIPercentDrivenInteractiveTransition <UIViewControllerAnimatedTransitioning>
 
 - (void)didCompleteTransition:(BOOL)didComplete;
 
