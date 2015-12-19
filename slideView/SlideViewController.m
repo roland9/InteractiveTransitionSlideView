@@ -27,6 +27,7 @@
         _delegate = delegate;
         _interactiveTransition = interactiveTransition;
     }
+    
     return self;
 }
 

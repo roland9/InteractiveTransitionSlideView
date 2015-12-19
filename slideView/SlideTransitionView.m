@@ -164,11 +164,11 @@
         
         if (state == TransitioningStateLeft) {
             self.transitioningState = TransitioningStateLeft;
-            [self.transition didCompleteTransition:self.initialState == TransitioningStateLeft ? NO : YES];
+//            [self.transition didCompleteTransition:self.initialState == TransitioningStateLeft ? NO : YES];
             
         } else {
             self.transitioningState = TransitioningStateRight;
-            [self.transition didCompleteTransition:self.initialState == TransitioningStateRight ? NO : YES];
+//            [self.transition didCompleteTransition:self.initialState == TransitioningStateRight ? NO : YES];
         }
     }];
     

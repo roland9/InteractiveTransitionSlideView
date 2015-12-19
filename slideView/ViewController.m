@@ -9,9 +9,11 @@
 #import "ViewController.h"
 #import "SlideViewController.h"
 #import "InteractiveTransition.h"
+#import "TransitioningDelegate.h"
 
 @interface ViewController ()
 
+@property (nonatomic, strong) TransitioningDelegate *transitioningDelegate;
 @property (nonatomic, strong) InteractiveTransition *interactiveTransition;
 
 @end
@@ -42,11 +44,11 @@
 
 - (void)presentSlideViewController {
     SlideViewController *slideViewController =
-    [[SlideViewController alloc] initWithDelegate:self
+    [[SlideViewController alloc] initWithDelegate:self.transitioningDelegate
                             interactiveTransition:self.interactiveTransition];
 
+    slideViewController.transitioningDelegate = self.transitioningDelegate;
     slideViewController.modalPresentationStyle = UIModalPresentationCustom;
-    slideViewController.transitioningDelegate = self;
     
     [self presentViewController:slideViewController animated:YES completion:nil];
 }
@@ -61,27 +63,11 @@
     return _interactiveTransition;
 }
 
-
-# pragma mark - UIViewControllerTransitioningDelegate
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return self.interactiveTransition;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return self.interactiveTransition;
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
-    self.interactiveTransition.isPresenting = YES;
-
-    return self.interactiveTransition;
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    self.interactiveTransition.isPresenting = NO;
-
-    return self.interactiveTransition;
+- (TransitioningDelegate *)transitioningDelegate {
+    if (!_transitioningDelegate) {
+        _transitioningDelegate = [[TransitioningDelegate alloc] initWithInteractiveTransition:self.interactiveTransition];
+    }
+    return _transitioningDelegate;
 }
 
 @end
