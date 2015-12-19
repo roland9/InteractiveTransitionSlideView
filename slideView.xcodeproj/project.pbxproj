@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		230461B61C20CC06009F8C1C /* InteractiveDismissTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 230461B51C20CC06009F8C1C /* InteractiveDismissTransition.m */; };
-		230461BA1C20D5AA009F8C1C /* InteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 230461B91C20D5AA009F8C1C /* InteractiveTransition.m */; };
+		230461B61C20CC06009F8C1C /* InteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 230461B51C20CC06009F8C1C /* InteractiveTransition.m */; };
 		23ABB7AA1C1DF85600A79F3F /* SlideTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */; };
 		23B135F51B2E10B8007B9C3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B135F41B2E10B8007B9C3B /* main.m */; };
 		23B135F81B2E10B8007B9C3B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B135F71B2E10B8007B9C3B /* AppDelegate.m */; };
@@ -19,7 +18,6 @@
 		23B1360F1B2E10B8007B9C3B /* slideViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B1360E1B2E10B8007B9C3B /* slideViewTests.m */; };
 		23B1361E1B2E1157007B9C3B /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B1361C1B2E1157007B9C3B /* SlideViewController.m */; };
 		23B1361F1B2E1157007B9C3B /* SlideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B1361D1B2E1157007B9C3B /* SlideViewController.xib */; };
-		23B136221B2E11C6007B9C3B /* InteractivePresentTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B136211B2E11C6007B9C3B /* InteractivePresentTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		230461B51C20CC06009F8C1C /* InteractiveDismissTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveDismissTransition.m; sourceTree = "<group>"; };
-		230461B71C20CC0D009F8C1C /* InteractiveDismissTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveDismissTransition.h; sourceTree = "<group>"; };
-		230461B81C20D5AA009F8C1C /* InteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveTransition.h; sourceTree = "<group>"; };
-		230461B91C20D5AA009F8C1C /* InteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveTransition.m; sourceTree = "<group>"; };
+		230461B51C20CC06009F8C1C /* InteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveTransition.m; sourceTree = "<group>"; };
+		230461B71C20CC0D009F8C1C /* InteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveTransition.h; sourceTree = "<group>"; };
 		23ABB7A81C1DF85600A79F3F /* SlideTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTransitionView.h; sourceTree = "<group>"; };
 		23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTransitionView.m; sourceTree = "<group>"; };
 		23B135EF1B2E10B8007B9C3B /* slideView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slideView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,8 +51,6 @@
 		23B1361B1B2E1157007B9C3B /* SlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideViewController.h; sourceTree = "<group>"; };
 		23B1361C1B2E1157007B9C3B /* SlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideViewController.m; sourceTree = "<group>"; };
 		23B1361D1B2E1157007B9C3B /* SlideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideViewController.xib; sourceTree = "<group>"; };
-		23B136201B2E11C6007B9C3B /* InteractivePresentTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractivePresentTransition.h; sourceTree = "<group>"; };
-		23B136211B2E11C6007B9C3B /* InteractivePresentTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePresentTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +96,8 @@
 				23B135F71B2E10B8007B9C3B /* AppDelegate.m */,
 				23B135FA1B2E10B8007B9C3B /* ViewController.m */,
 				23B1361C1B2E1157007B9C3B /* SlideViewController.m */,
-				230461B91C20D5AA009F8C1C /* InteractiveTransition.m */,
-				23B136211B2E11C6007B9C3B /* InteractivePresentTransition.m */,
-				230461B51C20CC06009F8C1C /* InteractiveDismissTransition.m */,
 				23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */,
+				230461B51C20CC06009F8C1C /* InteractiveTransition.m */,
 				23B1361D1B2E1157007B9C3B /* SlideViewController.xib */,
 				23B135FC1B2E10B8007B9C3B /* Main.storyboard */,
 				23B135FF1B2E10B8007B9C3B /* Images.xcassets */,
@@ -144,12 +136,10 @@
 		23CEAD6A1C16131200E5AA6E /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				230461B81C20D5AA009F8C1C /* InteractiveTransition.h */,
 				23ABB7A81C1DF85600A79F3F /* SlideTransitionView.h */,
 				23B135F61B2E10B8007B9C3B /* AppDelegate.h */,
-				230461B71C20CC0D009F8C1C /* InteractiveDismissTransition.h */,
+				230461B71C20CC0D009F8C1C /* InteractiveTransition.h */,
 				23B135F91B2E10B8007B9C3B /* ViewController.h */,
-				23B136201B2E11C6007B9C3B /* InteractivePresentTransition.h */,
 				23B1361B1B2E1157007B9C3B /* SlideViewController.h */,
 			);
 			name = Headers;
@@ -258,12 +248,10 @@
 			files = (
 				23B1361E1B2E1157007B9C3B /* SlideViewController.m in Sources */,
 				23ABB7AA1C1DF85600A79F3F /* SlideTransitionView.m in Sources */,
-				230461B61C20CC06009F8C1C /* InteractiveDismissTransition.m in Sources */,
-				230461BA1C20D5AA009F8C1C /* InteractiveTransition.m in Sources */,
+				230461B61C20CC06009F8C1C /* InteractiveTransition.m in Sources */,
 				23B135FB1B2E10B8007B9C3B /* ViewController.m in Sources */,
 				23B135F81B2E10B8007B9C3B /* AppDelegate.m in Sources */,
 				23B135F51B2E10B8007B9C3B /* main.m in Sources */,
-				23B136221B2E11C6007B9C3B /* InteractivePresentTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

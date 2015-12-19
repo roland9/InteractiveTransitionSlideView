@@ -25,7 +25,6 @@ typedef NS_ENUM(NSInteger, TransitioningState) {
 };
 
 
-
 @interface SlideTransitionView : UIView
 
 - (id)initWithFrame:(CGRect)frame

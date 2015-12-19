@@ -8,7 +8,10 @@
 
 @import UIKit;
 
+
 @interface InteractiveTransition : UIPercentDrivenInteractiveTransition <UIViewControllerAnimatedTransitioning>
+
+@property (nonatomic, assign) BOOL isPresenting;
 
 - (void)didCompleteTransition:(BOOL)didComplete;
 

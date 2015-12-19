@@ -10,6 +10,7 @@
 
 @interface SlideTransitionView()
 
+@property (nonatomic, assign) TransitioningState initialState;
 @property (nonatomic, assign) TransitioningState transitioningState;
 @property (nonatomic, weak)   id<SlideTransitionProtocol> delegate;
 @property (nonatomic, weak)   InteractiveTransition *transition;
@@ -27,6 +28,7 @@
     
     if (self) {
         _delegate = delegate;
+        _initialState = initialState;
         _transitioningState = initialState;
         _transition = transition;
         
@@ -56,11 +58,11 @@
 }
 
 - (void)handlePanGestureStateBegan {
+    
     if ([self.delegate respondsToSelector:@selector(presentSlideViewController)]) {
         [self.delegate presentSlideViewController];
-    }
-    
-    if ([self.delegate respondsToSelector:@selector(dismissSlideViewController)]) {
+        
+    } else if ([self.delegate respondsToSelector:@selector(dismissSlideViewController)]) {
         [self.delegate dismissSlideViewController];
     }
 }
@@ -143,22 +145,30 @@
         
         if (state == TransitioningStateLeft) {
             self.transform = [self transformTranslationHandleViewLeft];
-            [self.transition finishInteractiveTransition];
+            if (self.initialState == TransitioningStateRight) {
+                [self.transition finishInteractiveTransition];
+            } else {
+                [self.transition cancelInteractiveTransition];
+            }
             
         } else {
             self.transform = [self transformTranslationHandleViewRight];
-            [self.transition cancelInteractiveTransition];
+            if (self.initialState == TransitioningStateLeft) {
+                [self.transition finishInteractiveTransition];
+            } else {
+                [self.transition cancelInteractiveTransition];
+            }
         }
         
     } completion:^(BOOL finished) {
         
         if (state == TransitioningStateLeft) {
             self.transitioningState = TransitioningStateLeft;
-            [self.transition didCompleteTransition:YES];
+            [self.transition didCompleteTransition:self.initialState == TransitioningStateLeft ? NO : YES];
             
         } else {
             self.transitioningState = TransitioningStateRight;
-            [self.transition didCompleteTransition:NO];
+            [self.transition didCompleteTransition:self.initialState == TransitioningStateRight ? NO : YES];
         }
     }];
     

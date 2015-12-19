@@ -8,12 +8,11 @@
 
 #import "ViewController.h"
 #import "SlideViewController.h"
-#import "InteractivePresentTransition.h"
+#import "InteractiveTransition.h"
 
 @interface ViewController ()
 
-@property (nonatomic, strong) SlideTransitionView *slideTransitionView;
-@property (nonatomic, strong) InteractivePresentTransition *interactivePresentationTransition;
+@property (nonatomic, strong) InteractiveTransition *interactiveTransition;
 
 @end
 
@@ -29,20 +28,22 @@
 
 
 - (void)addSlideTransitionView {
-    self.slideTransitionView =
+    SlideTransitionView *slideTransitionView =
     [[SlideTransitionView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)
                                       delegate:self
-                                    transition:self.interactivePresentationTransition
+                                    transition:self.interactiveTransition
                                   initialState:TransitioningStateRight];
-    self.slideTransitionView.center = CGPointMake(CGRectGetWidth(self.view.bounds)-40, CGRectGetHeight(self.view.bounds)-40);
-    [self.view addSubview:self.slideTransitionView];
+    slideTransitionView.center = CGPointMake(CGRectGetWidth(self.view.bounds)-40, CGRectGetHeight(self.view.bounds)-40);
+    [self.view addSubview:slideTransitionView];
 }
 
 
 # pragma mark - SlideTransitionProtocol
 
 - (void)presentSlideViewController {
-    SlideViewController *slideViewController = [[SlideViewController alloc] init];
+    SlideViewController *slideViewController =
+    [[SlideViewController alloc] initWithDelegate:self
+                            interactiveTransition:self.interactiveTransition];
 
     slideViewController.modalPresentationStyle = UIModalPresentationCustom;
     slideViewController.transitioningDelegate = self;
@@ -53,26 +54,34 @@
 
 # pragma mark - Properties
 
-- (InteractivePresentTransition *)interactivePresentationTransition {
-    if (!_interactivePresentationTransition) {
-        _interactivePresentationTransition = [[InteractivePresentTransition alloc] init];
+- (InteractiveTransition *)interactiveTransition {
+    if (!_interactiveTransition) {
+        _interactiveTransition = [[InteractiveTransition alloc] init];
     }
-    return _interactivePresentationTransition;
+    return _interactiveTransition;
 }
 
 
 # pragma mark - UIViewControllerTransitioningDelegate
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
-{
-    NSLog(@"%s: presentedVC=%@  presentingVC=%@  source=%@", __FUNCTION__, presented, presenting, source);
-    return self.interactivePresentationTransition;
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return self.interactiveTransition;
 }
 
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator
-{
-    NSLog(@"%s", __FUNCTION__);
-    return self.interactivePresentationTransition;
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return self.interactiveTransition;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
+    self.interactiveTransition.isPresenting = YES;
+
+    return self.interactiveTransition;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    self.interactiveTransition.isPresenting = NO;
+
+    return self.interactiveTransition;
 }
 
 @end

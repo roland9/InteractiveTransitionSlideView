@@ -1,26 +1,34 @@
 //
 //  SlideViewController.m
-//  
+//  slideView
 //
 //  Created by Roland Gröpmair on 14/06/2015.
-//
+//  Copyright (c) 2015 mApps.ie. All rights reserved.
 //
 
 #import "SlideViewController.h"
-#import "InteractiveDismissTransition.h"
+#import "InteractiveTransition.h"
 
 @interface SlideViewController ()
 
-@property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) SlideTransitionView *slideTransitionView;
-@property (nonatomic, strong) InteractiveDismissTransition *interactiveDismissTransition;
+@property (nonatomic, weak) id<UIViewControllerTransitioningDelegate>delegate;
+@property (nonatomic, weak) InteractiveTransition *interactiveTransition;
 
 @end
 
-#define kSlideTransitionViewWidth   80
-#define kSlideTransitionViewHeight  80
+#define kSlideTransitionViewWidth   80.f
+#define kSlideTransitionViewHeight  80.f
 
 @implementation SlideViewController
+
+- (instancetype)initWithDelegate:(id<UIViewControllerTransitioningDelegate>)delegate interactiveTransition:(InteractiveTransition *)interactiveTransition {
+    self = [super init];
+    if (self) {
+        _delegate = delegate;
+        _interactiveTransition = interactiveTransition;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,54 +39,32 @@
 }
 
 - (void)addSlideTransitionView {
-    self.slideTransitionView =
-    [[SlideTransitionView alloc] initWithFrame:CGRectMake(0, 0, kSlideTransitionViewWidth, kSlideTransitionViewHeight)
+    NSCAssert(self.interactiveTransition, @"expected transition");
+    
+    SlideTransitionView *slideTransitionView =
+    [[SlideTransitionView alloc] initWithFrame:CGRectMake(0.f, 0.f, kSlideTransitionViewWidth, kSlideTransitionViewHeight)
                                       delegate:self
-                                    transition:self.interactiveDismissTransition
+                                    transition:self.interactiveTransition
                                   initialState:TransitioningStateLeft];
   
-    self.slideTransitionView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:self.slideTransitionView];
+    slideTransitionView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:slideTransitionView];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.slideTransitionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.f constant:0.f]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.slideTransitionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.slideTransitionView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:kSlideTransitionViewWidth]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.slideTransitionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:kSlideTransitionViewHeight]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:slideTransitionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.f constant:0.f]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:slideTransitionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:slideTransitionView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:kSlideTransitionViewWidth]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:slideTransitionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:kSlideTransitionViewHeight]];
 
-    self.slideTransitionView.backgroundColor = [UIColor yellowColor];
+    slideTransitionView.backgroundColor = [UIColor yellowColor];
 }
 
 # pragma mark - SlideTransitionProtocol
 
 - (void)dismissSlideViewController {
-    self.transitioningDelegate = self;
+    NSCAssert(self.delegate, @"expected delegate");
+    
+    self.transitioningDelegate = self.delegate;    
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-# pragma mark - Properties
-
-- (InteractiveDismissTransition *)interactiveDismissTransition {
-    if (!_interactiveDismissTransition) {
-        _interactiveDismissTransition = [[InteractiveDismissTransition alloc] init];
-    }
-    return _interactiveDismissTransition;
-}
-
-
-# pragma mark - UIViewControllerTransitioningDelegate
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
-{
-    NSLog(@"%s: presentedVC=%@  presentingVC=%@  source=%@", __FUNCTION__, presented, presenting, source);
-    return self.interactiveDismissTransition;
-}
-
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
-{
-    NSLog(@"%s: dismissedVC=%@", __FUNCTION__, dismissed);
-    return self.interactiveDismissTransition;
 }
 
 @end
