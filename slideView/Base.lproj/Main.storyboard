@@ -24,6 +24,67 @@
             </objects>
             <point key="canvasLocation" x="1777" y="452"/>
         </scene>
+        <!--Slide View Controller-->
+        <scene sceneID="kbf-dc-NtG">
+            <objects>
+                <viewController storyboardIdentifier="SlideViewController" id="0j5-E3-gYc" customClass="SlideViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GeR-do-pD3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xf8-tS-tfq"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="EFK-Dv-BR5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbP-FC-8Sg" userLabel="Fake StatusBar">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                                <color key="backgroundColor" red="0.72156862749999995" green="0.91372549020000005" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="dyW-RH-1lW"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7u-xF-sZU">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" red="0.72156862749999995" green="0.91372549020000005" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Title" id="zTz-Oi-aFg"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="06N-Xf-0CU">
+                                <rect key="frame" x="40" y="64" width="560" height="456"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOh-ax-alr" userLabel="Footer View">
+                                <rect key="frame" x="-40" y="520" width="640" height="80"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="nhV-bM-ESe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sbP-FC-8Sg" firstAttribute="leading" secondItem="EFK-Dv-BR5" secondAttribute="leading" id="2lF-1I-k57"/>
+                            <constraint firstItem="BOh-ax-alr" firstAttribute="top" secondItem="06N-Xf-0CU" secondAttribute="bottom" id="3RX-UL-9rw"/>
+                            <constraint firstAttribute="bottom" secondItem="BOh-ax-alr" secondAttribute="bottom" id="AVS-KK-uR5"/>
+                            <constraint firstItem="M7u-xF-sZU" firstAttribute="width" secondItem="EFK-Dv-BR5" secondAttribute="width" id="AwK-KN-LTi"/>
+                            <constraint firstItem="06N-Xf-0CU" firstAttribute="leading" secondItem="EFK-Dv-BR5" secondAttribute="leading" constant="40" id="GEH-46-Pvh"/>
+                            <constraint firstItem="06N-Xf-0CU" firstAttribute="top" secondItem="M7u-xF-sZU" secondAttribute="bottom" id="GwQ-jx-ISN"/>
+                            <constraint firstItem="06N-Xf-0CU" firstAttribute="width" secondItem="EFK-Dv-BR5" secondAttribute="width" constant="-40" id="Tdw-xI-qyr"/>
+                            <constraint firstItem="M7u-xF-sZU" firstAttribute="top" secondItem="EFK-Dv-BR5" secondAttribute="top" constant="20" id="cbd-3n-3Bm"/>
+                            <constraint firstItem="sbP-FC-8Sg" firstAttribute="width" secondItem="EFK-Dv-BR5" secondAttribute="width" id="ghl-Fi-N3Q"/>
+                            <constraint firstItem="BOh-ax-alr" firstAttribute="leading" secondItem="EFK-Dv-BR5" secondAttribute="leading" constant="-40" id="nxf-LP-vno"/>
+                            <constraint firstItem="BOh-ax-alr" firstAttribute="width" secondItem="EFK-Dv-BR5" secondAttribute="width" constant="40" id="oDy-AL-0uK"/>
+                            <constraint firstItem="sbP-FC-8Sg" firstAttribute="top" secondItem="EFK-Dv-BR5" secondAttribute="top" id="rbI-wc-ONA"/>
+                            <constraint firstItem="M7u-xF-sZU" firstAttribute="leading" secondItem="EFK-Dv-BR5" secondAttribute="leading" id="rgz-p7-vNa"/>
+                            <constraint firstItem="M7u-xF-sZU" firstAttribute="leading" secondItem="sbP-FC-8Sg" secondAttribute="trailing" constant="-600" id="vDV-ks-WCV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hyk-tL-K3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1777" y="1124"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="pQb-If-r9h">
             <objects>

@@ -11,9 +11,6 @@
 
 @interface SlideViewController ()
 
-@property (nonatomic, weak) id<UIViewControllerTransitioningDelegate>delegate;
-@property (nonatomic, weak) InteractiveTransition *interactiveTransition;
-
 @end
 
 #define kSlideTransitionViewWidth   80.f
@@ -21,20 +18,8 @@
 
 @implementation SlideViewController
 
-- (instancetype)initWithDelegate:(id<UIViewControllerTransitioningDelegate>)delegate interactiveTransition:(InteractiveTransition *)interactiveTransition {
-    self = [super init];
-    if (self) {
-        _delegate = delegate;
-        _interactiveTransition = interactiveTransition;
-    }
-    
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.backgroundColor = [UIColor whiteColor];
 
     [self addSlideTransitionView];
 }

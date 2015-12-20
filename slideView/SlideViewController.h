@@ -11,6 +11,9 @@
 
 @interface SlideViewController : UIViewController <SlideTransitionProtocol>
 
-- (instancetype)initWithDelegate:(id<UIViewControllerTransitioningDelegate>)delegate interactiveTransition:(InteractiveTransition *)interactiveTransition;
+//- (instancetype)initWithDelegate:(id<UIViewControllerTransitioningDelegate>)delegate interactiveTransition:(InteractiveTransition *)interactiveTransition;
+
+@property (nonatomic, weak) id<UIViewControllerTransitioningDelegate>delegate;
+@property (nonatomic, weak) InteractiveTransition *interactiveTransition;
 
 @end

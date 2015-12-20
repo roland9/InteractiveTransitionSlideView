@@ -22,18 +22,8 @@
 
 # pragma mark - Public
 
-//- (void)didCompleteTransition:(BOOL)didComplete {
-//
-//    if (didComplete) {
-////        [self.viewControllerFrom.view removeFromSuperview];
-//    } else {
-////        [self.viewControllerTo.view removeFromSuperview];
-//    }
-//
-//    NSCAssert(self.context, @"expected context");
-//    [self.context completeTransition:didComplete];
-//    self.context = nil;
-//}
+- (void)didCompleteTransition:(BOOL)didComplete {
+}
 
 
 # pragma mark - UIViewControllerAnimatedTransitioning
@@ -57,11 +47,12 @@
                              animations:^{
                                  presentedView.center = center;
                              } completion:^(BOOL finished) {
-                                 // finished in
-                                 if ([transitionContext transitionWasCancelled]) {
-                                     [transitionContext completeTransition:NO];
-                                 } else {
-                                     [transitionContext completeTransition:YES];
+                                 if (finished) {
+                                     if ([transitionContext transitionWasCancelled]) {
+                                         [transitionContext completeTransition:NO];
+                                     } else {
+                                         [transitionContext completeTransition:YES];
+                                     }
                                  }
                              }];
         } else {
@@ -74,102 +65,24 @@
                              animations:^{
                                  presentedView.center = center;
                              } completion:^(BOOL finished) {
-                                 // finished in??
-                                 [transitionContext completeTransition:YES];
+                                 if (finished) {
+                                     [transitionContext completeTransition:YES];
+                                 }
                              }];
         }
     }
 }
 
+
 - (void)animationEnded:(BOOL)transitionCompleted {
     NSLog(@"%s", __FUNCTION__);
 }
 
-- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
-{
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     NSLog(@"%s", __FUNCTION__);
-    return 1.f;
+    return .4f;
 }
 
-
-#pragma mark - UIViewControllerInteractiveTransitioning
-
-//- (void)startInteractiveTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
-//
-//    if (self.isPresenting) {
-//
-//        UIView *containerView = [transitionContext containerView];
-//        self.context = transitionContext;
-//
-//        self.viewControllerFrom = (ViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-//        NSCAssert([self.viewControllerFrom isKindOfClass:[UINavigationController class]], @"invalid");
-//
-//        self.viewControllerTo = (SlideViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-//        NSCAssert([self.viewControllerTo isKindOfClass:[SlideViewController class]], @"invalid");
-//
-//        CGFloat width = CGRectGetWidth(self.viewControllerFrom.view.frame);
-//        CGFloat height = CGRectGetHeight(self.viewControllerFrom.view.frame);
-//
-//        self.viewControllerTo.view.frame = CGRectMake(width,
-//                                                      0,
-//                                                      width,
-//                                                      height);
-//        [containerView addSubview:self.viewControllerTo.view];
-//
-//    } else {
-//
-//        UIView *containerView = [transitionContext containerView];
-//        self.context = transitionContext;
-//
-//        self.viewControllerFrom = (ViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-//        NSCAssert([self.viewControllerFrom isKindOfClass:[SlideViewController class]], @"invalid");
-//
-//        self.viewControllerTo = (SlideViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-//        NSCAssert([self.viewControllerTo isKindOfClass:[UINavigationController class]], @"invalid");
-//
-//        CGFloat width = CGRectGetWidth(self.viewControllerFrom.view.frame);
-//        CGFloat height = CGRectGetHeight(self.viewControllerFrom.view.frame);
-//
-//        self.viewControllerTo.view.frame = CGRectMake(width,
-//                                                      0,
-//                                                      width,
-//                                                      height);
-//        [containerView insertSubview:self.viewControllerTo.view belowSubview:self.viewControllerFrom.view];
-//
-//    }
-//}
-
-
-//- (void)updateInteractiveTransition:(CGFloat)percentComplete {
-//    NSLog(@"%s: percent=%f", __FUNCTION__, percentComplete);
-//    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
-//
-//    CGFloat scale = 1.f - 0.04f * percentComplete;
-//    self.viewControllerFrom.view.transform = CGAffineTransformMakeScale(scale, scale);
-//
-//    CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
-//    self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width * percentComplete, 0.f);
-//}
-//
-//- (void)cancelInteractiveTransition {
-//    NSLog(@"%s", __FUNCTION__);
-//    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
-//
-//    self.viewControllerFrom.view.transform = CGAffineTransformIdentity;
-//
-//    self.viewControllerTo.view.transform = CGAffineTransformIdentity;
-//}
-
-
-# pragma mark - UIViewControllerContextTransitioning
-
-//- (void)finishInteractiveTransition {
-//    NSLog(@"%s", __FUNCTION__);
-//    NSCAssert(self.viewControllerTo, @"expected self.viewControllerTo");
-//
-//    CGFloat width = CGRectGetWidth(self.viewControllerTo.view.frame);
-//
-//    self.viewControllerTo.view.transform = CGAffineTransformMakeTranslation(-width + 40.f, 0.f);
-//}
 
 @end

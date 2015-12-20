@@ -19,7 +19,6 @@
 		23B136031B2E10B8007B9C3B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B136011B2E10B8007B9C3B /* LaunchScreen.xib */; };
 		23B1360F1B2E10B8007B9C3B /* slideViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B1360E1B2E10B8007B9C3B /* slideViewTests.m */; };
 		23B1361E1B2E1157007B9C3B /* SlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B1361C1B2E1157007B9C3B /* SlideViewController.m */; };
-		23B1361F1B2E1157007B9C3B /* SlideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23B1361D1B2E1157007B9C3B /* SlideViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +55,6 @@
 		23B1360E1B2E10B8007B9C3B /* slideViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = slideViewTests.m; sourceTree = "<group>"; };
 		23B1361B1B2E1157007B9C3B /* SlideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideViewController.h; sourceTree = "<group>"; };
 		23B1361C1B2E1157007B9C3B /* SlideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideViewController.m; sourceTree = "<group>"; };
-		23B1361D1B2E1157007B9C3B /* SlideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +104,6 @@
 				23A4E8F61C25AFD5009FF134 /* TransitioningDelegate.m */,
 				23A4E8F91C25B14B009FF134 /* PresentationController.m */,
 				230461B51C20CC06009F8C1C /* InteractiveTransition.m */,
-				23B1361D1B2E1157007B9C3B /* SlideViewController.xib */,
 				23B135FC1B2E10B8007B9C3B /* Main.storyboard */,
 				23B135FF1B2E10B8007B9C3B /* Images.xcassets */,
 				23B136011B2E10B8007B9C3B /* LaunchScreen.xib */,
@@ -235,7 +232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23B1361F1B2E1157007B9C3B /* SlideViewController.xib in Resources */,
 				23B135FE1B2E10B8007B9C3B /* Main.storyboard in Resources */,
 				23B136031B2E10B8007B9C3B /* LaunchScreen.xib in Resources */,
 				23B136001B2E10B8007B9C3B /* Images.xcassets in Resources */,

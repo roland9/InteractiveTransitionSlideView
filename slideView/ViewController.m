@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor greenColor];
+    self.title = @"View Controller";
     
     [self addSlideTransitionView];
 }
@@ -43,10 +44,9 @@
 # pragma mark - SlideTransitionProtocol
 
 - (void)presentSlideViewController {
-    SlideViewController *slideViewController =
-    [[SlideViewController alloc] initWithDelegate:self.transitioningDelegate
-                            interactiveTransition:self.interactiveTransition];
-
+    SlideViewController *slideViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlideViewController"];
+    slideViewController.delegate = self.transitioningDelegate;
+    slideViewController.interactiveTransition = self.interactiveTransition;
     slideViewController.transitioningDelegate = self.transitioningDelegate;
     slideViewController.modalPresentationStyle = UIModalPresentationCustom;
     

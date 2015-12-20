@@ -132,9 +132,9 @@
     CGFloat width = CGRectGetWidth(self.superview.bounds);
     NSCAssert(self.transition, @"expected transition here");
     
-    CGFloat animationRatio = (width - CGRectGetMaxX(self.frame)) / width;
+    CGFloat animationRatio = - (x - CGRectGetWidth(self.bounds)) / width;
     
-    NSLog(@"%s: animationRatio=%f", __FUNCTION__, animationRatio);
+    NSLog(@"%s: x=%f  animationRatio=%f", __FUNCTION__, x, animationRatio);
     [self.transition updateInteractiveTransition:animationRatio];
 }
 
@@ -164,11 +164,11 @@
         
         if (state == TransitioningStateLeft) {
             self.transitioningState = TransitioningStateLeft;
-//            [self.transition didCompleteTransition:self.initialState == TransitioningStateLeft ? NO : YES];
+            [self.transition didCompleteTransition:self.initialState == TransitioningStateLeft ? NO : YES];
             
         } else {
             self.transitioningState = TransitioningStateRight;
-//            [self.transition didCompleteTransition:self.initialState == TransitioningStateRight ? NO : YES];
+            [self.transition didCompleteTransition:self.initialState == TransitioningStateRight ? NO : YES];
         }
     }];
     

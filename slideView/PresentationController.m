@@ -48,11 +48,6 @@
     } completion:nil];
 }
 
-- (CGSize)sizeForChildContentContainer:(id <UIContentContainer>)container
-               withParentContainerSize:(CGSize)parentSize {
-    return CGSizeMake(floorf(parentSize.width / 3.f), parentSize.height);
-}
-
 
 - (CGRect)frameOfPresentedViewInContainerView {
     CGRect presentedViewFrame = CGRectZero;
