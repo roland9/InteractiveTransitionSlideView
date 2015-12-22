@@ -8,13 +8,13 @@
 
 #import "ViewController.h"
 #import "SlideViewController.h"
-#import "InteractiveTransition.h"
+#import "InteractivePresentationTransition.h"
 #import "TransitioningDelegate.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) TransitioningDelegate *transitioningDelegate;
-@property (nonatomic, strong) InteractiveTransition *interactiveTransition;
+@property (nonatomic, strong) InteractivePresentationTransition *interactiveTransition;
 
 @end
 
@@ -54,11 +54,11 @@
 }
 
 
-# pragma mark - Properties
+# pragma mark - Properties, Lazy alloocation
 
-- (InteractiveTransition *)interactiveTransition {
+- (InteractivePresentationTransition *)interactiveTransition {
     if (!_interactiveTransition) {
-        _interactiveTransition = [[InteractiveTransition alloc] init];
+        _interactiveTransition = [[InteractivePresentationTransition alloc] init];
     }
     return _interactiveTransition;
 }

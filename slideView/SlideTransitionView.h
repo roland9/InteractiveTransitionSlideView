@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InteractiveTransition.h"
+#import "InteractivePresentationTransition.h"
 
 @protocol SlideTransitionProtocol <NSObject>
 
@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, TransitioningState) {
 
 - (id)initWithFrame:(CGRect)frame
            delegate:(id<SlideTransitionProtocol>)delegate
-         transition:(InteractiveTransition *)transition
+         transition:(InteractivePresentationTransition *)transition
        initialState:(TransitioningState)initialState;
 
 @end

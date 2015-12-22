@@ -14,6 +14,6 @@
 //- (instancetype)initWithDelegate:(id<UIViewControllerTransitioningDelegate>)delegate interactiveTransition:(InteractiveTransition *)interactiveTransition;
 
 @property (nonatomic, weak) id<UIViewControllerTransitioningDelegate>delegate;
-@property (nonatomic, weak) InteractiveTransition *interactiveTransition;
+@property (nonatomic, weak) InteractivePresentationTransition *interactiveTransition;
 
 @end

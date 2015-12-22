@@ -11,14 +11,14 @@
 
 @interface TransitioningDelegate ()
 
-@property (nonatomic, strong) InteractiveTransition *interactiveTransition;
+@property (nonatomic, strong) InteractivePresentationTransition *interactiveTransition;
 
 @end
 
 
 @implementation TransitioningDelegate
 
-- (instancetype)initWithInteractiveTransition:(InteractiveTransition *)interactiveTransition {
+- (instancetype)initWithInteractiveTransition:(InteractivePresentationTransition *)interactiveTransition {
     self = [super init];
     if (self) {
         _interactiveTransition = interactiveTransition;
@@ -45,15 +45,11 @@
 
 
 - (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
-    self.interactiveTransition.isPresenting = YES;
-    
     return self.interactiveTransition;
 }
 
 
 - (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    self.interactiveTransition.isPresenting = NO;
-    
     return self.interactiveTransition;
 }
 

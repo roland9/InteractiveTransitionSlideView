@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		230461B61C20CC06009F8C1C /* InteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 230461B51C20CC06009F8C1C /* InteractiveTransition.m */; };
+		230461B61C20CC06009F8C1C /* InteractivePresentationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 230461B51C20CC06009F8C1C /* InteractivePresentationTransition.m */; };
 		23A4E8F71C25AFD5009FF134 /* TransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A4E8F61C25AFD5009FF134 /* TransitioningDelegate.m */; };
 		23A4E8FA1C25B14B009FF134 /* PresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A4E8F91C25B14B009FF134 /* PresentationController.m */; };
 		23ABB7AA1C1DF85600A79F3F /* SlideTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */; };
@@ -32,8 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		230461B51C20CC06009F8C1C /* InteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractiveTransition.m; sourceTree = "<group>"; };
-		230461B71C20CC0D009F8C1C /* InteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveTransition.h; sourceTree = "<group>"; };
+		230461B51C20CC06009F8C1C /* InteractivePresentationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractivePresentationTransition.m; sourceTree = "<group>"; };
+		230461B71C20CC0D009F8C1C /* InteractivePresentationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractivePresentationTransition.h; sourceTree = "<group>"; };
 		23A4E8F51C25AFD5009FF134 /* TransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitioningDelegate.h; sourceTree = "<group>"; };
 		23A4E8F61C25AFD5009FF134 /* TransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitioningDelegate.m; sourceTree = "<group>"; };
 		23A4E8F81C25B14B009FF134 /* PresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentationController.h; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 				23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */,
 				23A4E8F61C25AFD5009FF134 /* TransitioningDelegate.m */,
 				23A4E8F91C25B14B009FF134 /* PresentationController.m */,
-				230461B51C20CC06009F8C1C /* InteractiveTransition.m */,
+				230461B51C20CC06009F8C1C /* InteractivePresentationTransition.m */,
 				23B135FC1B2E10B8007B9C3B /* Main.storyboard */,
 				23B135FF1B2E10B8007B9C3B /* Images.xcassets */,
 				23B136011B2E10B8007B9C3B /* LaunchScreen.xib */,
@@ -145,7 +145,7 @@
 				23A4E8F51C25AFD5009FF134 /* TransitioningDelegate.h */,
 				23ABB7A81C1DF85600A79F3F /* SlideTransitionView.h */,
 				23B135F61B2E10B8007B9C3B /* AppDelegate.h */,
-				230461B71C20CC0D009F8C1C /* InteractiveTransition.h */,
+				230461B71C20CC0D009F8C1C /* InteractivePresentationTransition.h */,
 				23B135F91B2E10B8007B9C3B /* ViewController.h */,
 				23B1361B1B2E1157007B9C3B /* SlideViewController.h */,
 			);
@@ -254,7 +254,7 @@
 			files = (
 				23B1361E1B2E1157007B9C3B /* SlideViewController.m in Sources */,
 				23ABB7AA1C1DF85600A79F3F /* SlideTransitionView.m in Sources */,
-				230461B61C20CC06009F8C1C /* InteractiveTransition.m in Sources */,
+				230461B61C20CC06009F8C1C /* InteractivePresentationTransition.m in Sources */,
 				23A4E8FA1C25B14B009FF134 /* PresentationController.m in Sources */,
 				23A4E8F71C25AFD5009FF134 /* TransitioningDelegate.m in Sources */,
 				23B135FB1B2E10B8007B9C3B /* ViewController.m in Sources */,

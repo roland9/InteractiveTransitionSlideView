@@ -1,24 +1,23 @@
 //
-//  InteractiveTransition.m
+//  InteractivePresentationTransition.m
 //  slideView
 //
 //  Created by Roland Gröpmair on 14/06/2015.
 //  Copyright (c) 2015 mApps.ie. All rights reserved.
 //
 
-#import "InteractiveTransition.h"
+#import "InteractivePresentationTransition.h"
 #import "SlideViewController.h"
 #import "ViewController.h"
 
-@interface InteractiveTransition()
+@interface InteractivePresentationTransition()
 
 @property (nonatomic, strong) UIViewController *viewControllerFrom;
 @property (nonatomic, strong) UIViewController *viewControllerTo;
-@property (nonatomic, strong) id<UIViewControllerContextTransitioning>context;
 @end
 
 
-@implementation InteractiveTransition
+@implementation InteractivePresentationTransition
 
 # pragma mark - Public
 
@@ -30,8 +29,7 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     NSLog(@"%s: isInteractive=%d", __FUNCTION__, [transitionContext isInteractive]);
-    self.context = transitionContext;
-    
+
     UIView *presentedView = [transitionContext viewForKey:UITransitionContextToViewKey];
     
     if (presentedView) {

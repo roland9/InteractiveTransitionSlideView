@@ -7,10 +7,10 @@
 //
 
 @import UIKit;
-#import "InteractiveTransition.h"
+#import "InteractivePresentationTransition.h"
 
 @interface TransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate>
 
-- (instancetype)initWithInteractiveTransition:(InteractiveTransition *)interactiveTransition;
+- (instancetype)initWithInteractiveTransition:(InteractivePresentationTransition *)interactiveTransition;
 
 @end

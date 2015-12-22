@@ -13,7 +13,7 @@
 @property (nonatomic, assign) TransitioningState initialState;
 @property (nonatomic, assign) TransitioningState transitioningState;
 @property (nonatomic, weak)   id<SlideTransitionProtocol> delegate;
-@property (nonatomic, weak)   InteractiveTransition *transition;
+@property (nonatomic, weak)   InteractivePresentationTransition *transition;
 
 @end
 
@@ -22,7 +22,7 @@
 
 - (id)initWithFrame:(CGRect)frame
            delegate:(id<SlideTransitionProtocol>)delegate
-         transition:(InteractiveTransition *)transition
+         transition:(InteractivePresentationTransition *)transition
        initialState:(TransitioningState)initialState {
     self = [super initWithFrame:frame];
     

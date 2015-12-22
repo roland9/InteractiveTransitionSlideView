@@ -21,7 +21,7 @@
     self = [super initWithPresentedViewController:presentedViewController presentingViewController:presentingViewController];
     if (self) {
         _dimmingView = [[UIView alloc] init];
-        _dimmingView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.4f];
+        _dimmingView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.3f];
     }
     
     return self;
