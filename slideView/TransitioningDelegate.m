@@ -11,20 +11,35 @@
 
 @interface TransitioningDelegate ()
 
-@property (nonatomic, strong) InteractivePresentationTransition *interactiveTransition;
+@property (nonatomic, strong) PresentationAnimationController *presentationAnimationController;
+@property (nonatomic, strong) PresentationInteractionController *presentationInteractionController;
+
+@property (nonatomic, strong) DismissalAnimationController *dismissalAnimationController;
+@property (nonatomic, strong) DismissalInteractionController *dismissalInteractionController;
 
 @end
 
 
 @implementation TransitioningDelegate
 
-- (instancetype)initWithInteractiveTransition:(InteractivePresentationTransition *)interactiveTransition {
+- (instancetype)initWithPresentationInteractionController:(PresentationInteractionController *)presentationInteractionController
+                          presentationAnimationController:(PresentationAnimationController *)presentationAnimationController
+                           dismissalInteractionController:(DismissalInteractionController *)dismissalInteractionController
+                             dismissalAnimationController:(DismissalAnimationController *)dismissalAnimationController {
     self = [super init];
     if (self) {
-        _interactiveTransition = interactiveTransition;
+        _presentationInteractionController = presentationInteractionController;
+        _presentationAnimationController = presentationAnimationController;
+        _dismissalInteractionController = dismissalInteractionController;
+        _dismissalAnimationController = dismissalAnimationController;
     }
     
     return self;
+}
+
+- (void)setSlideViewController:(UIViewController *)slideViewController {
+    _slideViewController = slideViewController;
+    self.presentationInteractionController.viewController = slideViewController;
 }
 
 # pragma mark - UIViewControllerTransitioningDelegate
@@ -34,23 +49,23 @@
 }
 
 
+// animationController and interactionController for Presentation
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return self.interactiveTransition;
+    return self.presentationAnimationController;
 }
-
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return self.interactiveTransition;
-}
-
 
 - (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return self.interactiveTransition;
+    return self.presentationInteractionController;
 }
 
 
+// animationController and interactionController for Dismissal
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return self.dismissalAnimationController;
+}
+
 - (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return self.interactiveTransition;
+    return self.dismissalInteractionController;
 }
 
 @end

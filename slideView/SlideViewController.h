@@ -11,9 +11,7 @@
 
 @interface SlideViewController : UIViewController <SlideTransitionProtocol>
 
-//- (instancetype)initWithDelegate:(id<UIViewControllerTransitioningDelegate>)delegate interactiveTransition:(InteractiveTransition *)interactiveTransition;
-
 @property (nonatomic, weak) id<UIViewControllerTransitioningDelegate>delegate;
-@property (nonatomic, weak) InteractivePresentationTransition *interactiveTransition;
+@property (nonatomic, weak) PresentationAnimationController *presentationAnimationController;
 
 @end

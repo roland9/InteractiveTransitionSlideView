@@ -1,5 +1,5 @@
 //
-//  InteractivePresentationTransition.h
+//  PresentationAnimationController.h
 //  slideView
 //
 //  Created by Roland Gröpmair on 14/06/2015.
@@ -9,7 +9,7 @@
 @import UIKit;
 
 
-@interface InteractivePresentationTransition : UIPercentDrivenInteractiveTransition <UIViewControllerAnimatedTransitioning>
+@interface PresentationAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 
 - (void)didCompleteTransition:(BOOL)didComplete;
 

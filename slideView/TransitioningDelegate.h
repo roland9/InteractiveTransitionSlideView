@@ -7,10 +7,19 @@
 //
 
 @import UIKit;
-#import "InteractivePresentationTransition.h"
+
+#import "PresentationInteractionController.h"
+#import "PresentationAnimationController.h"
+#import "DismissalAnimationController.h"
+#import "DismissalInteractionController.h"
 
 @interface TransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate>
 
-- (instancetype)initWithInteractiveTransition:(InteractivePresentationTransition *)interactiveTransition;
+@property (nonatomic, strong) UIViewController *slideViewController;
+
+- (instancetype)initWithPresentationInteractionController:(PresentationInteractionController *)presentationInteractionController
+                          presentationAnimationController:(PresentationAnimationController *)presentationAnimationController
+                           dismissalInteractionController:(DismissalInteractionController *)dismissalInteractionController
+                             dismissalAnimationController:(DismissalAnimationController *)dismissalAnimationController;
 
 @end
