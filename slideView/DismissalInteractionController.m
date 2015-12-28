@@ -13,40 +13,53 @@
 - (void)setViewController:(UIViewController<SlideTransitionProtocol> *)viewController {
     _viewController = viewController;
 
-    UIPanGestureRecognizer *presentationPanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePresentationPan:)];
+    UIPanGestureRecognizer *presentationPanGesture = [[UIPanGestureRecognizer alloc]
+                                                      initWithTarget:self
+                                                      action:@selector(handleDismissalPan:)];
     [_viewController.view addGestureRecognizer:presentationPanGesture];
 }
 
-- (void)handlePresentationPan:(UIPanGestureRecognizer *)pan {
+
+#define kPanningThreshold 0.5f
+#define kTargetViewInset  80.f
+
+- (void)handleDismissalPan:(UIPanGestureRecognizer *)pan {
     
-//    // how much distance have we panned in reference to the parent view?
-    CGPoint translation = [pan translationInView:pan.view];
-//    // do some math to translate this to a percentage based value
-    double d = translation.x / CGRectGetWidth(pan.view.bounds) * -1.0; //* -0.5
+    CGFloat distancePannedX = [pan translationInView:pan.view.superview].x;
+    CGFloat superviewWidth = CGRectGetWidth(pan.view.superview.bounds);
     
-    NSLog(@"here %f", d);
+    CGFloat fractionOfEntireTranslation = distancePannedX / (superviewWidth - kTargetViewInset);
+    NSLog(@"distanceXPanned=%f  animationFraction=%f", distancePannedX, fractionOfEntireTranslation);
     
     switch (pan.state) {
             
         case UIGestureRecognizerStateBegan:
-            
-            if ([self.viewController respondsToSelector:@selector(presentSlideViewController)]) {
-                [self.viewController presentSlideViewController];
-            }
+            [self dismissViewController];
+            break;
             
         case UIGestureRecognizerStateChanged:
-            // update progress of the transition
-            [self updateInteractiveTransition:d];
+            [self updateInteractiveTransition:fractionOfEntireTranslation];
+            break;
             
         default: // .Ended, .Cancelled, .Failed
-            
-            if (d > 0.2) {
-                // threshold crossed: finish
+        {
+            BOOL didCrossPanningThreshold = fractionOfEntireTranslation > kPanningThreshold;
+            if (didCrossPanningThreshold) {
                 [self finishInteractiveTransition];
             } else {
-                // threshold not met: cancel
                 [self cancelInteractiveTransition];
             }
+        }
+            break;
+    }
+}
+
+
+# pragma mark - Private methods
+
+- (void)dismissViewController {
+    if ([self.viewController respondsToSelector:@selector(dismissSlideViewController)]) {
+        [self.viewController dismissSlideViewController];
     }
 }
 

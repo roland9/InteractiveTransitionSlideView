@@ -23,7 +23,7 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     NSLog(@"%s: isInteractive=%d", __FUNCTION__, [transitionContext isInteractive]);
-
+    
     UIView *presentedView = [transitionContext viewForKey:UITransitionContextToViewKey];
     
     if (presentedView) {
@@ -31,37 +31,20 @@
         presentedView.center = CGPointMake(presentedView.bounds.size.width * 1.5f, center.y);
         [[transitionContext containerView] addSubview:presentedView];
         
-        if ([transitionContext isInteractive]) {
-            
-            [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                                  delay:0.f
-                                options:UIViewAnimationOptionCurveLinear
-                             animations:^{
-                                 presentedView.center = center;
-                             } completion:^(BOOL finished) {
-                                 if (finished) {
-                                     if ([transitionContext transitionWasCancelled]) {
-                                         [transitionContext completeTransition:NO];
-                                     } else {
-                                         [transitionContext completeTransition:YES];
-                                     }
-                                 }
-                             }];
-        } else {
-            // non-interactive - gradual stop
-            [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                                  delay:0.f
-                 usingSpringWithDamping: 1.0
-                  initialSpringVelocity: 1
-                                options: 0
-                             animations:^{
-                                 presentedView.center = center;
-                             } completion:^(BOOL finished) {
-                                 if (finished) {
+        [UIView animateWithDuration:[self transitionDuration:transitionContext]
+                              delay:0.f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             presentedView.center = center;
+                         } completion:^(BOOL finished) {
+                             if (finished) {
+                                 if ([transitionContext transitionWasCancelled]) {
+                                     [transitionContext completeTransition:NO];
+                                 } else {
                                      [transitionContext completeTransition:YES];
                                  }
-                             }];
-        }
+                             }
+                         }];
     }
 }
 

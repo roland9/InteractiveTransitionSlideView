@@ -19,13 +19,15 @@
     [_viewController.view addGestureRecognizer:presentationPanGesture];
 }
 
+
 #define kPanningThreshold 0.5f
 #define kTargetViewInset  80.f
+#define kMaxScaleOffset   0.06f
 
 - (void)handlePresentationPan:(UIPanGestureRecognizer *)pan {
     
-    CGFloat distancePannedX = [pan translationInView:pan.view.superview].x;
-    CGFloat superviewWidth = CGRectGetWidth(pan.view.superview.bounds);
+    CGFloat distancePannedX = [pan translationInView:pan.view].x;
+    CGFloat superviewWidth = CGRectGetWidth(pan.view.bounds);
     
     CGFloat fractionOfEntireTranslation = -distancePannedX / (superviewWidth - kTargetViewInset);
     NSLog(@"distanceXPanned=%f  animationFraction=%f", distancePannedX, fractionOfEntireTranslation);
@@ -37,24 +39,38 @@
             break;
             
         case UIGestureRecognizerStateChanged:
-            pan.view.transform = CGAffineTransformMakeTranslation(distancePannedX, 0);
+        {
+            CGFloat scale = 1.f - kMaxScaleOffset*fractionOfEntireTranslation;
+            pan.view.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
+            
             [self updateInteractiveTransition:fractionOfEntireTranslation];
+        }
             break;
             
         default: // .Ended, .Cancelled, .Failed
         {
             BOOL didCrossPanningThreshold = fractionOfEntireTranslation > kPanningThreshold;
+            CGFloat scale = 1.f - kMaxScaleOffset;
+
+            [UIView animateWithDuration:0.4f
+                                  delay:0.f
+                                options:0
+                             animations:^{
+                                 if (didCrossPanningThreshold) {
+                                     pan.view.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
+                                 } else {
+                                     pan.view.layer.transform = CATransform3DIdentity;
+                                 }
+                             } completion:^(BOOL finished) {
+                                 pan.view.layer.transform = CATransform3DIdentity;
+                             }];
             
-            [self completeAnimationWithDidCrossThreshold:didCrossPanningThreshold
-                                          superviewWidth:superviewWidth
-                                                 panView:pan.view
-                                         completionBlock:^(BOOL completed) {
-                                             if (didCrossPanningThreshold) {
-                                                 [self finishInteractiveTransition];
-                                             } else {
-                                                 [self cancelInteractiveTransition];
-                                             }
-                                         }];
+            // when we try to call this block in the completion of the animation, there's a gap
+            if (didCrossPanningThreshold) {
+                [self finishInteractiveTransition];
+            } else {
+                [self cancelInteractiveTransition];
+            }
         }
             break;
     }
@@ -67,29 +83,6 @@
     if ([self.viewController respondsToSelector:@selector(presentSlideViewController)]) {
         [self.viewController presentSlideViewController];
     }
-}
-
-
-- (void)completeAnimationWithDidCrossThreshold:(BOOL)didCrossPanningThreshold
-                                superviewWidth:(CGFloat)superviewWidth
-                                       panView:(UIView *)panView
-                               completionBlock:(void (^)(BOOL))completionBlock {
-    [UIView animateWithDuration:0.4f
-                          delay:0.f
-         usingSpringWithDamping:0.6f
-          initialSpringVelocity:0.9f
-                        options:0
-                     animations:^{
-                         if (didCrossPanningThreshold) {
-                             panView.transform =
-                             CGAffineTransformMakeTranslation(-superviewWidth + kTargetViewInset, 0);
-                         } else {
-                             panView.transform = CGAffineTransformIdentity;
-                         }
-                     } completion:nil];
-    
-    // when we try to call this block in the completion of the animation, there's a gap
-    completionBlock(YES);
 }
 
 @end

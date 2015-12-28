@@ -21,7 +21,7 @@
     self = [super initWithPresentedViewController:presentedViewController presentingViewController:presentingViewController];
     if (self) {
         _dimmingView = [[UIView alloc] init];
-        _dimmingView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.3f];
+        _dimmingView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5f];
     }
     
     return self;
@@ -41,10 +41,16 @@
     } completion:nil];
 }
 
+#define kMaxScaleOffset   0.06f
 
 - (void)dismissalTransitionWillBegin {
+    CGFloat scale = 1.f - kMaxScaleOffset;
+    [self presentingViewController].view.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
+
     [[[self presentedViewController] transitionCoordinator] animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         self.dimmingView.alpha = 0.f;
+#warning todoRG that doesn't animate??
+        [self presentingViewController].view.layer.transform = CATransform3DMakeScale(1.f, 1.f, 1.f);
     } completion:nil];
 }
 

@@ -29,6 +29,7 @@ animationController:(PresentationAnimationController *)animationController
     if (self) {
         _delegate = delegate;
         _initialState = initialState;
+#warning todoRG do we still need that?
         _transitioningState = initialState;
         _animationController = animationController;
         
