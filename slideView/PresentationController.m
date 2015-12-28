@@ -49,21 +49,21 @@
 }
 
 
-//- (CGRect)frameOfPresentedViewInContainerView {
-//    CGRect presentedViewFrame = CGRectZero;
-//    CGRect containerBounds = [[self containerView] bounds];
-//    presentedViewFrame.size = [self sizeForChildContentContainer:
-//                               (UIView<UIContentContainer> *)[self presentedView]
-//                                         withParentContainerSize:containerBounds.size];
-//    presentedViewFrame.origin.x = containerBounds.size.width -
-//    presentedViewFrame.size.width;
-//    return presentedViewFrame;
-//}
-//
-//
-//- (void)containerViewWillLayoutSubviews {
-//    [self.dimmingView setFrame:[[self containerView] bounds]];
-//    [[self presentedView] setFrame:[self frameOfPresentedViewInContainerView]];
-//}
+- (CGRect)frameOfPresentedViewInContainerView {
+    CGRect presentedViewFrame = CGRectZero;
+    CGRect containerBounds = [[self containerView] bounds];
+    presentedViewFrame.size = [self sizeForChildContentContainer:
+                               (UIView<UIContentContainer> *)[self presentedView]
+                                         withParentContainerSize:containerBounds.size];
+    presentedViewFrame.origin.x = containerBounds.size.width -
+    presentedViewFrame.size.width;
+    return presentedViewFrame;
+}
+
+
+- (void)containerViewWillLayoutSubviews {
+    [self.dimmingView setFrame:[[self containerView] bounds]];
+    [[self presentedView] setFrame:[self frameOfPresentedViewInContainerView]];
+}
 
 @end

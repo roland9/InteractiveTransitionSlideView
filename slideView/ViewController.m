@@ -58,6 +58,7 @@
     slideViewController.delegate = self.transitioningDelegate;
     slideViewController.transitioningDelegate = self.transitioningDelegate;
     slideViewController.modalPresentationStyle = UIModalPresentationCustom;
+    self.transitioningDelegate.slideViewController = slideViewController;
     
     [self presentViewController:slideViewController animated:YES completion:nil];
 }

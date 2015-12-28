@@ -74,7 +74,7 @@
                                 superviewWidth:(CGFloat)superviewWidth
                                        panView:(UIView *)panView
                                completionBlock:(void (^)(BOOL))completionBlock {
-    [UIView animateWithDuration:0.2f
+    [UIView animateWithDuration:0.4f
                           delay:0.f
          usingSpringWithDamping:0.6f
           initialSpringVelocity:0.9f
@@ -86,7 +86,10 @@
                          } else {
                              panView.transform = CGAffineTransformIdentity;
                          }
-                     } completion:completionBlock];
+                     } completion:nil];
+    
+    // when we try to call this block in the completion of the animation, there's a gap
+    completionBlock(YES);
 }
 
 @end
