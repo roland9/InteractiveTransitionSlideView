@@ -37,9 +37,14 @@
     return self;
 }
 
-- (void)setSlideViewController:(UIViewController *)slideViewController {
+- (void)setPresentingViewController:(UIViewController<SlideTransitionProtocol> *)presentingViewController {
+    _presentingViewController = presentingViewController;
+    self.presentationInteractionController.viewController = presentingViewController;
+}
+
+- (void)setSlideViewController:(UIViewController<SlideTransitionProtocol> *)slideViewController {
     _slideViewController = slideViewController;
-    self.presentationInteractionController.viewController = slideViewController;
+    self.dismissalInteractionController.viewController = slideViewController;
 }
 
 # pragma mark - UIViewControllerTransitioningDelegate

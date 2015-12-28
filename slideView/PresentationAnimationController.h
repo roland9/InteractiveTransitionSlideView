@@ -11,6 +11,4 @@
 
 @interface PresentationAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 
-- (void)didCompleteTransition:(BOOL)didComplete;
-
 @end

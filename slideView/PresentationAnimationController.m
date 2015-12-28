@@ -19,12 +19,6 @@
 
 @implementation PresentationAnimationController
 
-# pragma mark - Public
-
-- (void)didCompleteTransition:(BOOL)didComplete {
-}
-
-
 # pragma mark - UIViewControllerAnimatedTransitioning
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {

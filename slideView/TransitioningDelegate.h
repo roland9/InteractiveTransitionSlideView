@@ -15,7 +15,8 @@
 
 @interface TransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate>
 
-@property (nonatomic, strong) UIViewController *slideViewController;
+@property (nonatomic, strong) UIViewController<SlideTransitionProtocol> *presentingViewController;
+@property (nonatomic, strong) UIViewController<SlideTransitionProtocol> *slideViewController;
 
 - (instancetype)initWithPresentationInteractionController:(PresentationInteractionController *)presentationInteractionController
                           presentationAnimationController:(PresentationAnimationController *)presentationAnimationController

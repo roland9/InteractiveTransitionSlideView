@@ -36,7 +36,7 @@
     
     [self addSlideTransitionView];
     
-    self.transitioningDelegate.slideViewController = self.slideViewController;
+    self.transitioningDelegate.presentingViewController = self;
 }
 
 
