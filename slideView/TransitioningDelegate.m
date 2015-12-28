@@ -22,16 +22,14 @@
 
 @implementation TransitioningDelegate
 
-- (instancetype)initWithPresentationInteractionController:(PresentationInteractionController *)presentationInteractionController
-                          presentationAnimationController:(PresentationAnimationController *)presentationAnimationController
-                           dismissalInteractionController:(DismissalInteractionController *)dismissalInteractionController
-                             dismissalAnimationController:(DismissalAnimationController *)dismissalAnimationController {
+- (instancetype)init {
     self = [super init];
     if (self) {
-        _presentationInteractionController = presentationInteractionController;
-        _presentationAnimationController = presentationAnimationController;
-        _dismissalInteractionController = dismissalInteractionController;
-        _dismissalAnimationController = dismissalAnimationController;
+        _presentationInteractionController = [[PresentationInteractionController alloc] init];
+        _presentationAnimationController = [[PresentationAnimationController alloc] init];
+        
+        _dismissalInteractionController = [[DismissalInteractionController alloc] init];
+        _dismissalAnimationController = [[DismissalAnimationController alloc] init];
     }
     
     return self;

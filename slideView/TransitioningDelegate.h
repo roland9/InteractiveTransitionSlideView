@@ -18,9 +18,4 @@
 @property (nonatomic, strong) UIViewController<SlideTransitionProtocol> *presentingViewController;
 @property (nonatomic, strong) UIViewController<SlideTransitionProtocol> *slideViewController;
 
-- (instancetype)initWithPresentationInteractionController:(PresentationInteractionController *)presentationInteractionController
-                          presentationAnimationController:(PresentationAnimationController *)presentationAnimationController
-                           dismissalInteractionController:(DismissalInteractionController *)dismissalInteractionController
-                             dismissalAnimationController:(DismissalAnimationController *)dismissalAnimationController;
-
 @end

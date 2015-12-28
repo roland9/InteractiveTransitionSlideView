@@ -24,6 +24,8 @@
 //    // do some math to translate this to a percentage based value
     double d = translation.x / CGRectGetWidth(pan.view.bounds) * -1.0; //* -0.5
     
+    NSLog(@"here %f", d);
+    
     switch (pan.state) {
             
         case UIGestureRecognizerStateBegan:
