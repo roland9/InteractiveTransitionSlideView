@@ -24,10 +24,11 @@
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     NSLog(@"%s: isInteractive=%d", __FUNCTION__, [transitionContext isInteractive]);
     
-    UIView *presentedView = [transitionContext viewForKey:UITransitionContextToViewKey];
+    UIView *presentedView  = [transitionContext viewForKey:UITransitionContextToViewKey];
+    UIView *containerView = [transitionContext containerView];
     
     if (presentedView) {
-        CGPoint center = presentedView.center;
+        CGPoint center = containerView.center;
         presentedView.center = CGPointMake(presentedView.bounds.size.width * 1.5f, center.y);
         [[transitionContext containerView] addSubview:presentedView];
         
@@ -37,27 +38,20 @@
                          animations:^{
                              presentedView.center = center;
                          } completion:^(BOOL finished) {
-                             if (finished) {
-                                 if ([transitionContext transitionWasCancelled]) {
-                                     [transitionContext completeTransition:NO];
-                                 } else {
-                                     [transitionContext completeTransition:YES];
-                                 }
+                             if ([transitionContext transitionWasCancelled]) {
+                                 [transitionContext completeTransition:NO];
+                             } else {
+                                 [transitionContext completeTransition:YES];
                              }
                          }];
+    } else {
+        NSCAssert(NO, @"unexpected");
     }
 }
 
 
-- (void)animationEnded:(BOOL)transitionCompleted {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    NSLog(@"%s", __FUNCTION__);
     return .4f;
 }
-
 
 @end

@@ -33,7 +33,7 @@
     CGFloat superviewWidth = CGRectGetWidth(pan.view.superview.bounds);
     
     CGFloat fractionOfEntireTranslation = distancePannedX / (superviewWidth - kTargetViewInset);
-    NSLog(@"distanceXPanned=%f  animationFraction=%f", distancePannedX, fractionOfEntireTranslation);
+//    NSLog(@"distanceXPanned=%f  animationFraction=%f", distancePannedX, fractionOfEntireTranslation);
     
     switch (pan.state) {
             

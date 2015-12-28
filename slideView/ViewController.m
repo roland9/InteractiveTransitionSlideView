@@ -53,8 +53,8 @@
 - (void)presentSlideViewController {
     SlideViewController *slideViewController = self.slideViewController;
     slideViewController.delegate = self.transitioningDelegate;
-    slideViewController.transitioningDelegate = self.transitioningDelegate;
     slideViewController.modalPresentationStyle = UIModalPresentationCustom;
+    slideViewController.transitioningDelegate = self.transitioningDelegate;
     self.transitioningDelegate.slideViewController = slideViewController;
     
     NSCAssert(slideViewController.slideTransitionView, @"expected slideTransitionView");

@@ -35,27 +35,20 @@
                          animations:^{
                              presentedView.center = CGPointMake(presentedView.bounds.size.width * 1.5f, center.y);
                          } completion:^(BOOL finished) {
-                             if (finished) {
-                                 if ([transitionContext transitionWasCancelled]) {
-                                     [transitionContext completeTransition:NO];
-                                 } else {
-                                     [transitionContext completeTransition:YES];
-                                 }
+                             if ([transitionContext transitionWasCancelled]) {
+                                 [transitionContext completeTransition:NO];
+                             } else {
+                                 [transitionContext completeTransition:YES];
                              }
                          }];
+    } else {
+        NSCAssert(NO, @"unexpected");
     }
 }
 
 
-- (void)animationEnded:(BOOL)transitionCompleted {
-    NSLog(@"%s", __FUNCTION__);
-}
-
-
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    NSLog(@"%s", __FUNCTION__);
     return .4f;
 }
-
 
 @end

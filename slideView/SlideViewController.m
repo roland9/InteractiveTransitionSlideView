@@ -62,7 +62,8 @@
 - (void)dismissSlideViewController {
     NSCAssert(self.delegate, @"expected delegate");
     
-//    self.modalPresentationStyle = UIModalPresentationCustom;
+    // maybe this helps: http://www.raywenderlich.com/forums/viewtopic.php?f=2&t=18661
+    self.modalPresentationStyle = UIModalPresentationCustom;
     self.transitioningDelegate = self.delegate;
     
     [self dismissViewControllerAnimated:YES completion:nil];

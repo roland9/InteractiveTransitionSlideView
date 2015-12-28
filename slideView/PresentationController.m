@@ -49,21 +49,11 @@
 
     [[[self presentedViewController] transitionCoordinator] animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         self.dimmingView.alpha = 0.f;
-#warning todoRG that doesn't animate??
+#warning todoRG that doesn't animate??  maybe because we applied this transformation to the slideView's superview, which is not this view!
         [self presentingViewController].view.layer.transform = CATransform3DMakeScale(1.f, 1.f, 1.f);
-    } completion:nil];
-}
-
-
-- (CGRect)frameOfPresentedViewInContainerView {
-    CGRect presentedViewFrame = CGRectZero;
-    CGRect containerBounds = [[self containerView] bounds];
-    presentedViewFrame.size = [self sizeForChildContentContainer:
-                               (UIView<UIContentContainer> *)[self presentedView]
-                                         withParentContainerSize:containerBounds.size];
-    presentedViewFrame.origin.x = containerBounds.size.width -
-    presentedViewFrame.size.width;
-    return presentedViewFrame;
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        [self.dimmingView removeFromSuperview];
+    }];
 }
 
 
