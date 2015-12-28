@@ -12,13 +12,16 @@
 
 - (void)setViewController:(UIViewController<SlideTransitionProtocol> *)viewController {
     _viewController = viewController;
+}
+
+- (void)setSlidingView:(UIView *)slidingView {
+    _slidingView = slidingView;
     
     UIPanGestureRecognizer *presentationPanGesture = [[UIPanGestureRecognizer alloc]
                                                       initWithTarget:self
                                                       action:@selector(handlePresentationPan:)];
-    [_viewController.view addGestureRecognizer:presentationPanGesture];
+    [_slidingView addGestureRecognizer:presentationPanGesture];
 }
-
 
 #define kPanningThreshold 0.5f
 #define kTargetViewInset  80.f
@@ -27,10 +30,10 @@
 - (void)handlePresentationPan:(UIPanGestureRecognizer *)pan {
     
     CGFloat distancePannedX = [pan translationInView:pan.view].x;
-    CGFloat superviewWidth = CGRectGetWidth(pan.view.bounds);
+    CGFloat viewWidth = CGRectGetWidth(pan.view.superview.bounds);
     
-    CGFloat fractionOfEntireTranslation = -distancePannedX / (superviewWidth - kTargetViewInset);
-    NSLog(@"distanceXPanned=%f  animationFraction=%f", distancePannedX, fractionOfEntireTranslation);
+    CGFloat fractionOfEntireTranslation = -distancePannedX / (viewWidth - kTargetViewInset);
+//    NSLog(@"distanceXPanned=%f  animationFraction=%f", distancePannedX, fractionOfEntireTranslation);
     
     switch (pan.state) {
             
@@ -41,7 +44,7 @@
         case UIGestureRecognizerStateChanged:
         {
             CGFloat scale = 1.f - kMaxScaleOffset*fractionOfEntireTranslation;
-            pan.view.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
+            pan.view.superview.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
             
             [self updateInteractiveTransition:fractionOfEntireTranslation];
         }
@@ -57,12 +60,12 @@
                                 options:0
                              animations:^{
                                  if (didCrossPanningThreshold) {
-                                     pan.view.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
+                                     pan.view.superview.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
                                  } else {
-                                     pan.view.layer.transform = CATransform3DIdentity;
+                                     pan.view.superview.layer.transform = CATransform3DIdentity;
                                  }
                              } completion:^(BOOL finished) {
-                                 pan.view.layer.transform = CATransform3DIdentity;
+                                 pan.view.superview.layer.transform = CATransform3DIdentity;
                              }];
             
             // when we try to call this block in the completion of the animation, there's a gap

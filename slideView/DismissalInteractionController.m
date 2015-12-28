@@ -12,11 +12,15 @@
 
 - (void)setViewController:(UIViewController<SlideTransitionProtocol> *)viewController {
     _viewController = viewController;
+}
 
+- (void)setSlidingView:(UIView *)slidingView {
+    _slidingView = slidingView;
+    
     UIPanGestureRecognizer *presentationPanGesture = [[UIPanGestureRecognizer alloc]
                                                       initWithTarget:self
                                                       action:@selector(handleDismissalPan:)];
-    [_viewController.view addGestureRecognizer:presentationPanGesture];
+    [_slidingView addGestureRecognizer:presentationPanGesture];
 }
 
 

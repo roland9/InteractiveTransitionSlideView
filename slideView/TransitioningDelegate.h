@@ -17,5 +17,7 @@
 
 @property (nonatomic, strong) UIViewController<SlideTransitionProtocol> *presentingViewController;
 @property (nonatomic, strong) UIViewController<SlideTransitionProtocol> *slideViewController;
+@property (nonatomic, weak)   UIView *slidingViewPresenting;
+@property (nonatomic, weak)   UIView *slidingViewPresented;
 
 @end

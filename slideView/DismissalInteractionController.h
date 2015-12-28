@@ -12,5 +12,6 @@
 @interface DismissalInteractionController : UIPercentDrivenInteractiveTransition
 
 @property (nonatomic, weak) UIViewController<SlideTransitionProtocol> *viewController;
+@property (nonatomic, weak) UIView *slidingView;
 
 @end

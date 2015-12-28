@@ -45,6 +45,16 @@
     self.dismissalInteractionController.viewController = slideViewController;
 }
 
+- (void)setSlidingViewPresenting:(UIView *)slidingViewPresenting {
+    _slidingViewPresenting = slidingViewPresenting;
+    self.presentationInteractionController.slidingView = slidingViewPresenting;
+}
+
+- (void)setSlidingViewPresented:(UIView *)slidingViewPresented {
+    _slidingViewPresented = slidingViewPresented;
+    self.dismissalInteractionController.slidingView = slidingViewPresented;
+}
+
 # pragma mark - UIViewControllerTransitioningDelegate
 
 - (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source {

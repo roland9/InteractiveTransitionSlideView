@@ -43,6 +43,8 @@
                                   initialState:TransitioningStateRight];
     slideTransitionView.center = CGPointMake(CGRectGetWidth(self.view.bounds)-40, CGRectGetHeight(self.view.bounds)-40);
     [self.view addSubview:slideTransitionView];
+
+    self.transitioningDelegate.slidingViewPresenting = slideTransitionView;
 }
 
 
@@ -55,6 +57,8 @@
     slideViewController.modalPresentationStyle = UIModalPresentationCustom;
     self.transitioningDelegate.slideViewController = slideViewController;
     
+    NSCAssert(slideViewController.slideTransitionView, @"expected slideTransitionView");
+    self.transitioningDelegate.slidingViewPresented = slideViewController.slideTransitionView;
     [self presentViewController:slideViewController animated:YES completion:nil];
 }
 

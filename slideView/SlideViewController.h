@@ -13,5 +13,6 @@
 
 @property (nonatomic, weak) id<UIViewControllerTransitioningDelegate>delegate;
 @property (nonatomic, strong) PresentationAnimationController *presentationAnimationController;
+@property (nonatomic, readonly) SlideTransitionView *slideTransitionView;
 
 @end
