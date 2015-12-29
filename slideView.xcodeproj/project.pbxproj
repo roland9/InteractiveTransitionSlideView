@@ -13,7 +13,6 @@
 		23A4E9001C29F805009FF134 /* DismissalAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A4E8FF1C29F805009FF134 /* DismissalAnimationController.m */; };
 		23A4E9031C29FF1F009FF134 /* PresentationInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A4E9021C29FF1F009FF134 /* PresentationInteractionController.m */; };
 		23A4E9061C2A03D4009FF134 /* DismissalInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A4E9051C2A03D4009FF134 /* DismissalInteractionController.m */; };
-		23ABB7AA1C1DF85600A79F3F /* SlideTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */; };
 		23B135F51B2E10B8007B9C3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B135F41B2E10B8007B9C3B /* main.m */; };
 		23B135F81B2E10B8007B9C3B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B135F71B2E10B8007B9C3B /* AppDelegate.m */; };
 		23B135FB1B2E10B8007B9C3B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23B135FA1B2E10B8007B9C3B /* ViewController.m */; };
@@ -47,8 +46,6 @@
 		23A4E9021C29FF1F009FF134 /* PresentationInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentationInteractionController.m; sourceTree = "<group>"; };
 		23A4E9041C2A03D4009FF134 /* DismissalInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissalInteractionController.h; sourceTree = "<group>"; };
 		23A4E9051C2A03D4009FF134 /* DismissalInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissalInteractionController.m; sourceTree = "<group>"; };
-		23ABB7A81C1DF85600A79F3F /* SlideTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTransitionView.h; sourceTree = "<group>"; };
-		23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTransitionView.m; sourceTree = "<group>"; };
 		23B135EF1B2E10B8007B9C3B /* slideView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slideView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B135F31B2E10B8007B9C3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23B135F41B2E10B8007B9C3B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -127,7 +124,6 @@
 				23B135F71B2E10B8007B9C3B /* AppDelegate.m */,
 				23B135FA1B2E10B8007B9C3B /* ViewController.m */,
 				23B1361C1B2E1157007B9C3B /* SlideViewController.m */,
-				23ABB7A91C1DF85600A79F3F /* SlideTransitionView.m */,
 				23A4E8F61C25AFD5009FF134 /* TransitioningDelegate.m */,
 				23A4E8F91C25B14B009FF134 /* PresentationController.m */,
 				23A4E9071C2A06E6009FF134 /* Presentation */,
@@ -174,7 +170,6 @@
 				23A4E8FE1C29F805009FF134 /* DismissalAnimationController.h */,
 				23A4E8F81C25B14B009FF134 /* PresentationController.h */,
 				23A4E8F51C25AFD5009FF134 /* TransitioningDelegate.h */,
-				23ABB7A81C1DF85600A79F3F /* SlideTransitionView.h */,
 				23B135F61B2E10B8007B9C3B /* AppDelegate.h */,
 				230461B71C20CC0D009F8C1C /* PresentationAnimationController.h */,
 				23B135F91B2E10B8007B9C3B /* ViewController.h */,
@@ -284,7 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				23B1361E1B2E1157007B9C3B /* SlideViewController.m in Sources */,
-				23ABB7AA1C1DF85600A79F3F /* SlideTransitionView.m in Sources */,
 				230461B61C20CC06009F8C1C /* PresentationAnimationController.m in Sources */,
 				23A4E8FA1C25B14B009FF134 /* PresentationController.m in Sources */,
 				23A4E8F71C25AFD5009FF134 /* TransitioningDelegate.m in Sources */,

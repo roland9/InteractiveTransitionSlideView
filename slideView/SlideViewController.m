@@ -11,11 +11,11 @@
 
 @interface SlideViewController ()
 
-@property (nonatomic, strong) SlideTransitionView *slideTransitionView;
+@property (nonatomic, strong) UIView *slideTransitionView;
 
 @end
 
-#define kSlideTransitionViewHeight  80.f
+#define kSlideTransitionViewHeight  70.f
 #define kSlideTransitionInset       80.f
 
 @implementation SlideViewController
@@ -24,11 +24,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         // instantiate this view already in the initializer, because we need the reference in ViewController.presentSlideViewController
-        _slideTransitionView =
-        [[SlideTransitionView alloc] initWithFrame:CGRectZero
-                                          delegate:self
-                               animationController:self.presentationAnimationController
-                                      initialState:TransitioningStateLeft];
+        _slideTransitionView = [[UIView alloc] init];
     }
     return self;
 }
@@ -49,10 +45,6 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.slideTransitionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.slideTransitionView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.f constant:kSlideTransitionInset]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.slideTransitionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:kSlideTransitionViewHeight]];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(80, 20, 200, 80)];
-    label.text = @"here is a label";
-    [self.slideTransitionView addSubview:label];
     
     self.slideTransitionView.backgroundColor = [UIColor lightGrayColor];
 }

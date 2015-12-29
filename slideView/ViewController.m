@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) TransitioningDelegate *transitioningDelegate;
 @property (nonatomic, strong) SlideViewController *slideViewController;
+@property (nonatomic, weak)   IBOutlet UIView *slideView;
 
 @end
 
@@ -29,22 +30,8 @@
     self.view.backgroundColor = [UIColor greenColor];
     self.title = @"View Controller";
     
-    [self addSlideTransitionView];
-    
+    self.transitioningDelegate.slidingViewPresenting = self.slideView;
     self.transitioningDelegate.presentingViewController = self;
-}
-
-
-- (void)addSlideTransitionView {
-    SlideTransitionView *slideTransitionView =
-    [[SlideTransitionView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)
-                                      delegate:self
-                           animationController:[[PresentationAnimationController alloc] init]
-                                  initialState:TransitioningStateRight];
-    slideTransitionView.center = CGPointMake(CGRectGetWidth(self.view.bounds)-40, CGRectGetHeight(self.view.bounds)-40);
-    [self.view addSubview:slideTransitionView];
-
-    self.transitioningDelegate.slidingViewPresenting = slideTransitionView;
 }
 
 

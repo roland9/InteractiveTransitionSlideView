@@ -8,7 +8,6 @@
 
 #import "DismissalAnimationController.h"
 #import "SlideViewController.h"
-#import "ViewController.h"
 
 @interface DismissalAnimationController()
 

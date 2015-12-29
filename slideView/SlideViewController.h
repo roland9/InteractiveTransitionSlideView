@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SlideTransitionView.h"
+#import "ViewController.h"
+#import "PresentationAnimationController.h"
 
 @interface SlideViewController : UIViewController <SlideTransitionProtocol>
 
 @property (nonatomic, weak) id<UIViewControllerTransitioningDelegate>delegate;
 @property (nonatomic, strong) PresentationAnimationController *presentationAnimationController;
-@property (nonatomic, readonly) SlideTransitionView *slideTransitionView;
+@property (nonatomic, readonly) UIView *slideTransitionView;
 
 @end

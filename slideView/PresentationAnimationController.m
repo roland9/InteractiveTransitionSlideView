@@ -8,7 +8,6 @@
 
 #import "PresentationAnimationController.h"
 #import "SlideViewController.h"
-#import "ViewController.h"
 
 @interface PresentationAnimationController()
 

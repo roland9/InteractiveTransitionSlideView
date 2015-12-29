@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SlideTransitionView.h"
+
+@protocol SlideTransitionProtocol <NSObject>
+
+@optional
+- (void)presentSlideViewController;
+- (void)dismissSlideViewController;
+
+@end
+
 
 @interface ViewController : UIViewController <SlideTransitionProtocol>
 
