@@ -61,11 +61,12 @@
                              animations:^{
                                  if (didCrossPanningThreshold) {
                                      pan.view.superview.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
+                                     NSLog(@"pan.view.superview=%@", pan.view.superview);
+                                     
                                  } else {
                                      pan.view.superview.layer.transform = CATransform3DIdentity;
                                  }
                              } completion:^(BOOL finished) {
-                                 pan.view.superview.layer.transform = CATransform3DIdentity;
                              }];
             
             // when we try to call this block in the completion of the animation, there's a gap

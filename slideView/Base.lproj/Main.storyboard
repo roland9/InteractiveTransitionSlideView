@@ -63,24 +63,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7u-xF-sZU">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <rect key="frame" x="60" y="20" width="540" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="zTz-Oi-aFg"/>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="06N-Xf-0CU">
-                                <rect key="frame" x="0.0" y="64" width="600" height="466"/>
+                                <rect key="frame" x="60" y="64" width="600" height="466"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="M7u-xF-sZU" firstAttribute="width" secondItem="EFK-Dv-BR5" secondAttribute="width" id="AwK-KN-LTi"/>
-                            <constraint firstItem="06N-Xf-0CU" firstAttribute="leading" secondItem="EFK-Dv-BR5" secondAttribute="leading" id="GEH-46-Pvh"/>
+                            <constraint firstItem="M7u-xF-sZU" firstAttribute="width" secondItem="EFK-Dv-BR5" secondAttribute="width" constant="-60" id="AwK-KN-LTi"/>
+                            <constraint firstItem="06N-Xf-0CU" firstAttribute="leading" secondItem="EFK-Dv-BR5" secondAttribute="leading" constant="60" id="GEH-46-Pvh"/>
                             <constraint firstItem="06N-Xf-0CU" firstAttribute="top" secondItem="M7u-xF-sZU" secondAttribute="bottom" id="GwQ-jx-ISN"/>
                             <constraint firstItem="06N-Xf-0CU" firstAttribute="width" secondItem="EFK-Dv-BR5" secondAttribute="width" id="Tdw-xI-qyr"/>
                             <constraint firstItem="M7u-xF-sZU" firstAttribute="top" secondItem="EFK-Dv-BR5" secondAttribute="top" constant="20" id="cbd-3n-3Bm"/>
-                            <constraint firstItem="M7u-xF-sZU" firstAttribute="leading" secondItem="EFK-Dv-BR5" secondAttribute="leading" id="rgz-p7-vNa"/>
+                            <constraint firstItem="M7u-xF-sZU" firstAttribute="leading" secondItem="EFK-Dv-BR5" secondAttribute="leading" constant="60" id="rgz-p7-vNa"/>
                             <constraint firstItem="Xf8-tS-tfq" firstAttribute="top" secondItem="06N-Xf-0CU" secondAttribute="bottom" constant="70" id="rxZ-9L-qq9"/>
                         </constraints>
                     </view>

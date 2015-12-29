@@ -24,6 +24,11 @@
     NSLog(@"%s: isInteractive=%d", __FUNCTION__, [transitionContext isInteractive]);
 
     UIView *presentedView = [transitionContext viewForKey:UITransitionContextFromViewKey];
+    UIViewController *viewControllerTo = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    NSLog(@"viewControllerTo=%@", viewControllerTo);
+    NSCAssert([viewControllerTo isKindOfClass:[UINavigationController class]], @"expected UINavigationController");
+    // now that's an ugly hack!
+    UIView *view = [[[(UINavigationController *)viewControllerTo viewControllers] firstObject] view];
     
     if (presentedView) {
         CGPoint center = presentedView.center;
@@ -33,6 +38,8 @@
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
                              presentedView.center = CGPointMake(presentedView.bounds.size.width * 1.5f, center.y);
+                             view.layer.transform = CATransform3DIdentity;
+
                          } completion:^(BOOL finished) {
                              if ([transitionContext transitionWasCancelled]) {
                                  [transitionContext completeTransition:NO];

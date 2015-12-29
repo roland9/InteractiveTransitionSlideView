@@ -44,13 +44,9 @@
 #define kMaxScaleOffset   0.06f
 
 - (void)dismissalTransitionWillBegin {
-    CGFloat scale = 1.f - kMaxScaleOffset;
-    [self presentingViewController].view.layer.transform = CATransform3DMakeScale(scale, scale, 1.f);
 
     [[[self presentedViewController] transitionCoordinator] animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         self.dimmingView.alpha = 0.f;
-#warning todoRG that doesn't animate??  maybe because we applied this transformation to the slideView's superview, which is not this view!
-        [self presentingViewController].view.layer.transform = CATransform3DMakeScale(1.f, 1.f, 1.f);
     } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         [self.dimmingView removeFromSuperview];
     }];
